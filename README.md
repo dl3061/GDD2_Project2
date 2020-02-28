@@ -5,4 +5,4 @@ A game about change.
 
 Today we learned about... 
 
-We learned about git committing
+We learned about git conflicts.
