@@ -8,3 +8,5 @@ Today we learned about...
 We learned about git conflicts.
 
 This is a sentence added by Jamal
+
+Is it really though?
