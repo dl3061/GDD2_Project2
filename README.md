@@ -6,3 +6,5 @@ A game about change.
 Today we learned about... 
 
 We learned about git conflicts.
+
+This is a sentence added by Jamal
