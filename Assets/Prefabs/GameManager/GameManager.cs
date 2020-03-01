@@ -10,9 +10,10 @@ public class GameManager : MonoBehaviour
     }
 
     [Tooltip("The default scroll speed of the game.")]
-    public float defaultScrollSpeed = 2f;
+    public float defaultScrollSpeed = -2f;
 
     // The current scroll speed
+    [SerializeField]
     private float currScrollSpeed = 0f; 
 
 
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-
+        currScrollSpeed = defaultScrollSpeed;
     }
 
 
@@ -42,5 +43,23 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Update the values 
+    }
+
+
+    private void OnValidate()
+    {
+        if (defaultScrollSpeed > 0f)
+        {
+            Debug.LogWarning("Scroll speed is positive, which is away from the camera by default. Are you sure you want this?");
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public float GetCurrentScrollSpeed()
+    {
+        return currScrollSpeed;
     }
 }

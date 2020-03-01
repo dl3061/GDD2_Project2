@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e3e1dd45334224f87d66e1626edf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultScrollSpeed: -3
 --- !u!114 &-5057375223356145360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +72,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 9002088369504968948, guid: dbaa1d6817b72b8468b4986e86cd6823,
     type: 3}
+  tiles: []
+  currentFormation: {fileID: 0}
