@@ -11,7 +11,7 @@ public class PolarityToggle : MonoBehaviour
     [Tooltip("The polarity to be initialized to. If Neutral, this script does nothing.")]
     public Polarity defaultPolarity = Polarity.Neutral;
 
-    [Tooltip("The gameobject that appears when in lightside.")]
+    [Tooltip("The gameobject that appears when in neutral form.")]
     public GameObject neutralObject;
 
     [Tooltip("The gameobject that appears when in lightside.")]
@@ -27,7 +27,7 @@ public class PolarityToggle : MonoBehaviour
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
-    void Start()
+    private void Start()
     {
         // Initialize the game object activeness to the default polarity
         UpdateObjectActiveness(defaultPolarity);
@@ -40,7 +40,7 @@ public class PolarityToggle : MonoBehaviour
     /// <summary>
     /// Update is called once per frame
     /// </summary>
-    void Update()
+    private void Update()
     {
         // Reinforce the current active polarity, unless neutral (in which case do nothing).
         UpdateObjectActiveness(currentPolarity);
@@ -48,7 +48,7 @@ public class PolarityToggle : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    /// OnValidate is called in editor. 
     /// </summary>
     private void OnValidate()
     {
@@ -72,6 +72,7 @@ public class PolarityToggle : MonoBehaviour
             darkObject.SetActive(polarity == Polarity.Dark);
     }
 
+    #region public functions
 
     /// <summary>
     /// Reset Event Handler. Call when resetting (ie restarting) the game.
@@ -118,4 +119,6 @@ public class PolarityToggle : MonoBehaviour
     {
         currentPolarity = Polarity.Dark;
     }
+
+    #endregion
 }
