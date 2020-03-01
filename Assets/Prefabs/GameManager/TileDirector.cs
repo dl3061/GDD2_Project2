@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TileDirector : MonoBehaviour
 {
-    public GameObject tilePrefab;
+    [SerializeField]
+    GameObject tilePrefab;
     [SerializeField]
     List<GameObject> tiles;
+    [SerializeField]
     Formation currentFormation;
 
     private void Start()
@@ -37,10 +39,15 @@ public class TileDirector : MonoBehaviour
     {
         if (currentFormation)
         {
-            for(int i = 0; i < currentFormation.formationDetails.Count; i++)
+            foreach(Formation.formationDetail f in currentFormation.formationDetails)
             {
-                //Loop through formation details and re-create tiles based on instructions 
+                GameObject tile = getReadyTile();
+                tile.transform.position = f.formationPositionDetails;
+                tile.transform.localScale = f.formationScaleDetails;
+                tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarity;
+                tile.SetActive(true);
             }
+            currentFormation = null;
         }
     }
 
