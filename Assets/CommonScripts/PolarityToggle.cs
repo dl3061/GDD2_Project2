@@ -72,6 +72,7 @@ public class PolarityToggle : MonoBehaviour
             darkObject.SetActive(polarity == Polarity.Dark);
     }
 
+
     #region public functions
 
     /// <summary>
