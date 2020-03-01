@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Formation
   lanes: 3
   formationDetails:
-  - polarity: 0
+  - polarities: 0100000002000000
     formationScaleDetails: {x: 1, y: 1, z: 5}
-    formationPositionDetails: {x: -1, y: 0, z: 0}
-  - polarity: 1
+    formationPositionDetails: {x: -1, y: 0, z: 3}
+  - polarities: 0100000002000000
     formationScaleDetails: {x: 1, y: 1, z: 5}
-    formationPositionDetails: {x: 0, y: 1, z: 3}
-  - polarity: 2
+    formationPositionDetails: {x: 0, y: 0, z: 0}
+  - polarities: 0100000002000000
     formationScaleDetails: {x: 1, y: 1, z: 5}
-    formationPositionDetails: {x: 1, y: 2, z: 6}
+    formationPositionDetails: {x: 1, y: 0, z: 3}
