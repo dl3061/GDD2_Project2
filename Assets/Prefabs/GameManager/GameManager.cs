@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
         get; private set;
     }
 
+    [Tooltip("The default scroll speed of the game.")]
+    public float defaultScrollSpeed = 2f;
+
+    // The current scroll speed
+    private float currScrollSpeed = 0f; 
 
 
     /// <summary>
@@ -20,9 +25,22 @@ public class GameManager : MonoBehaviour
         GameManager.Singleton = this;
     }
 
-    // Update is called once per frame
+
+    /// <summary>
+    /// Start is called before the first frame update.
+    /// Initialize values here.
+    /// </summary>
+    void Start()
+    {
+
+    }
+
+
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
-        
+        // Update the values 
     }
 }
