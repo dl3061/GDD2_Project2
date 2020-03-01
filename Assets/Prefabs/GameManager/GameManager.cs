@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     [Tooltip("The default scroll speed of the game.")]
     public float defaultScrollSpeed = -2f;
 
+    [Tooltip("How many lanes are in the game. Should be 3.")]
+    public int NumberOfLanes = 3;
+
+    [Tooltip("How wide is a lane.")]
+    public float LaneWidth = 1;
+
     // The current scroll speed
     [SerializeField]
     private float currScrollSpeed = 0f; 

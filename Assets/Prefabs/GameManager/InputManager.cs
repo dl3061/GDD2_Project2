@@ -46,6 +46,8 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         // Update the values 
+        moveLeftDown = Input.GetKeyDown(KeyCode.LeftArrow);
+        moveRightDown = Input.GetKeyDown(KeyCode.RightArrow);
     }
 
 
