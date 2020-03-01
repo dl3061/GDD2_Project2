@@ -5,5 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Formation")]
 public class Formation : ScriptableObject
 {
-    public List<Vector3[]> formationDetails;
+    [System.Serializable]
+    public struct formationDetail
+    {
+        public Vector3 formationScaleDetails;
+        public Vector3 formationPositionDetails;
+    }
+
+    public List<formationDetail> formationDetails;
 }
