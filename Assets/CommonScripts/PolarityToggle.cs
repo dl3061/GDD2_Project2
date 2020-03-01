@@ -12,6 +12,9 @@ public class PolarityToggle : MonoBehaviour
     public Polarity defaultPolarity = Polarity.Neutral;
 
     [Tooltip("The gameobject that appears when in lightside.")]
+    public GameObject neutralObject;
+
+    [Tooltip("The gameobject that appears when in lightside.")]
     public GameObject lightObject;
 
     [Tooltip("The gameobject that appears when in darkside.")]
@@ -26,6 +29,10 @@ public class PolarityToggle : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // Initialize the game object activeness to the default polarity
+        UpdateObjectActiveness(defaultPolarity);
+
+        // Set current polarity to the default polarity
         currentPolarity = defaultPolarity;
     }
 
@@ -35,15 +42,34 @@ public class PolarityToggle : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // Reinforce the current active polarity, unless neutral.
-        if (currentPolarity != Polarity.Neutral)
-        {
-            if (lightObject != null)
-                lightObject.SetActive(currentPolarity == Polarity.Light);
+        // Reinforce the current active polarity, unless neutral (in which case do nothing).
+        UpdateObjectActiveness(currentPolarity);
+    }
 
-            if (darkObject != null)
-                darkObject.SetActive(currentPolarity == Polarity.Dark);
-        }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void OnValidate()
+    {
+        UpdateObjectActiveness(defaultPolarity);
+    }
+
+
+    /// <summary>
+    /// Given input polarity, updates the three children using that polarity;
+    /// </summary>
+    /// <param name="polarity"></param>
+    private void UpdateObjectActiveness(Polarity polarity)
+    {
+        if (neutralObject != null)
+            neutralObject.SetActive(polarity == Polarity.Neutral);
+
+        if (lightObject != null)
+            lightObject.SetActive(polarity == Polarity.Light);
+
+        if (darkObject != null)
+            darkObject.SetActive(polarity == Polarity.Dark);
     }
 
 
