@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Singleton
     {
-        
+        get; private set;
+    }
+
+
+
+    /// <summary>
+    /// Awake is called before start. 
+    /// Initialize references here.
+    /// </summary>
+    private void Awake()
+    {
+        GameManager.Singleton = this;
     }
 
     // Update is called once per frame
