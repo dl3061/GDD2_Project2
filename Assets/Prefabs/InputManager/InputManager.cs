@@ -73,5 +73,15 @@ public class InputManager : MonoBehaviour
         return moveRightDown;
     }
 
+    public bool GetJump()
+    {
+        return jump;
+    }
+
+    public bool GetJumpDown()
+    {
+        return jumpDown;
+    }
+
     #endregion
 }
