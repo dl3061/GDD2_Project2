@@ -10,7 +10,7 @@ public class Formation : ScriptableObject
     [System.Serializable]
     public struct formationDetail
     {
-        public Polarity polarity;
+        public List<Polarity> polarities;
         public Vector3 formationScaleDetails;
         public Vector3 formationPositionDetails;
     }

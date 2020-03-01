@@ -11,9 +11,14 @@ public class TileDirector : MonoBehaviour
     [SerializeField]
     Formation currentFormation;
 
+    float formationTimer;
+
+
+    //Should be same z value as camera
+    float formationDespawnThreshold = -30.0f;
     private void Start()
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 30; i++)
         {
             GameObject tile = Instantiate(tilePrefab);
             tile.SetActive(false);
@@ -37,17 +42,27 @@ public class TileDirector : MonoBehaviour
 
     private void Update()
     {
-        if (currentFormation)
+        foreach(GameObject t in tiles)
         {
-            foreach(Formation.formationDetail f in currentFormation.formationDetails)
+           if(t.transform.position.z < formationDespawnThreshold)
+            {
+                t.SetActive(false);
+            }
+        }
+        if (currentFormation && formationTimer < Time.realtimeSinceStartup)
+        {
+            //2.68 base
+            //As scroll speed is multiplied by x, delay is divided by x
+            float delay = 1.34f;
+            formationTimer = Time.realtimeSinceStartup + delay;
+            foreach (Formation.formationDetail f in currentFormation.formationDetails)
             {
                 GameObject tile = getReadyTile();
                 tile.transform.position = f.formationPositionDetails;
                 tile.transform.localScale = f.formationScaleDetails;
-                tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarity;
+                tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarities[Random.Range(0,f.polarities.Count)];
                 tile.SetActive(true);
             }
-            currentFormation = null;
         }
     }
 
