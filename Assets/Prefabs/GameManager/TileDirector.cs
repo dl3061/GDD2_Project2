@@ -13,6 +13,8 @@ public class TileDirector : MonoBehaviour
 
     float formationTimer;
 
+    [SerializeField]
+    float delay;
 
     //Should be same z value as camera
     float formationDespawnThreshold = -30.0f;
@@ -53,7 +55,7 @@ public class TileDirector : MonoBehaviour
         {
             //2.68 base
             //As scroll speed is multiplied by x, delay is divided by x
-            float delay = 1.34f;
+            
             formationTimer = Time.realtimeSinceStartup + delay;
             foreach (Formation.formationDetail f in currentFormation.formationDetails)
             {
