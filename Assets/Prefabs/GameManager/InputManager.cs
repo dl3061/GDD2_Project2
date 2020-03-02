@@ -18,6 +18,10 @@ public class InputManager : MonoBehaviour
     private bool moveRightDown;
     private bool jump;
     private bool jumpDown;
+    private bool speedIncrease;
+    private bool speedIncreaseDown;
+    private bool speedDecrease;
+    private bool speedDecreaseDown;
 
 
     /// <summary>
@@ -36,7 +40,17 @@ public class InputManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
+            move = Vector2.zero;
+            moveLeft = false;
+            moveLeftDown = false;
+            moveRight = false;
+            moveRightDown = false;
+            jump = false;
+            jumpDown = false;
+            speedIncrease = false;
+            speedIncreaseDown = false;
+            speedDecrease = false;
+            speedDecreaseDown = false;
     }
 
 
@@ -46,8 +60,24 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         // Update the values 
+        move.x = Input.GetAxis("Horizontal");
+        move.y = Input.GetAxis("Vertical");
+
+        // Update the values
+        moveLeft = Input.GetKey(KeyCode.LeftArrow);
         moveLeftDown = Input.GetKeyDown(KeyCode.LeftArrow);
+
+        moveRight = Input.GetKey(KeyCode.RightArrow);
         moveRightDown = Input.GetKeyDown(KeyCode.RightArrow);
+
+        jump = Input.GetKey(KeyCode.Space);
+        jumpDown = Input.GetKey(KeyCode.Space);
+
+        speedIncrease = Input.GetKey(KeyCode.UpArrow);
+        speedIncreaseDown = Input.GetKeyDown(KeyCode.UpArrow);
+
+        speedDecrease = Input.GetKey(KeyCode.DownArrow);
+        speedDecreaseDown = Input.GetKeyDown(KeyCode.DownArrow);
     }
 
 
@@ -86,6 +116,26 @@ public class InputManager : MonoBehaviour
     public bool GetJumpDown()
     {
         return jumpDown;
+    }
+
+    public bool GetSpeedIncrease()
+    {
+        return speedIncrease;
+    }
+
+    public bool GetSpeedIncreaseDown()
+    {
+        return speedIncreaseDown;
+    }
+
+    public bool GetSpeedDecrease()
+    {
+        return speedDecrease;
+    }
+
+    public bool GetSpeedDecreaseDown()
+    {
+        return speedDecreaseDown;
     }
 
     #endregion
