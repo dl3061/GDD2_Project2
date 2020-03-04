@@ -16,17 +16,44 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("How far out before the player is nudged back in, as a ratio of a tile.")]
     public float invalidLerpNudgeRatio = 0.25f;
 
+    [Tooltip("The initial upward force applied when jump.")]
+    public float jumpInitialForce = 250f;
+
+    [Tooltip("The multiplicative rate the applied force goes down per second.")]
+    [Range(0f, 1f)]
+    public float jumpDeterRate = .6f;
+
+    [Tooltip("The maximum number of times a player may jump before landing.")]
+    public int jumpLimit = 2;
+
+
+    // Variables for lerp control
     private float lerpSource;               // The source of the lerp
     private float lerpDestination;          // The destination of the lerp
     private bool isLerping;                 // A flag to check if the player is lerping
     private bool isLerpingToInvalidTile;    // A flag to check, if the player is lerping, if the lerp is valid (ie off the tiles)
 
+    // Variables for jumping
+    private int jumpCount = 0;              // How many times the player has jumped.
+    private float jumpTimer = 0f;           
+
     // Which lane is the user in
-    private int initLanePosition; 
+    private int initLanePosition;
+
+    // 
+    Rigidbody body;
+    CollisionHelper collisionHelper;
+
 
     [SerializeField]
     private int lanePosition;
     private float laneWidth;
+
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+        collisionHelper = GetComponent<CollisionHelper>();
+    }
 
 
     void Start()
@@ -47,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Reset timers
         movementLerpTimer = 0f;
+        jumpTimer = 0f;
     }
 
     // Update is called once per frame
@@ -132,6 +160,38 @@ public class PlayerMovement : MonoBehaviour
                 lanePosition = nextLanePosition;
             }
         }
+
+        // Check for jump
+        {
+            Vector2 jumpForce = Vector2.zero;
+            if (input.GetJump())
+            {
+                if (input.GetJumpDown() && jumpCount < jumpLimit)
+                {
+                    // This is the first frame of jumping -> apply max force.
+                    jumpForce.y = jumpInitialForce;
+                    jumpTimer = 0f;
+
+                    // Reset the vertical velocity to zero.
+                    Vector2 newVelocity = body.velocity;
+                    newVelocity.y = 0;
+                    body.velocity = newVelocity;
+
+                    // Increase jumpCount
+                    jumpCount += 1;
+                }
+                else
+                {
+                    // Increment timer, and apply deterioated jump rate.
+                    jumpTimer += Time.deltaTime;
+                    jumpForce.y = jumpInitialForce * Mathf.Pow(jumpDeterRate, jumpTimer) * Time.deltaTime;
+                }
+            }
+            body.AddForce(jumpForce);
+        }
+
+        if (collisionHelper.IsTouchingGround())
+            jumpCount = 0;
     }
 
 
@@ -150,5 +210,10 @@ public class PlayerMovement : MonoBehaviour
 
         // Reset timers
         movementLerpTimer = 0f;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
     }
 }

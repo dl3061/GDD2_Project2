@@ -184,8 +184,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.37790942
+  m_Center: {x: 0, y: -1.1099143, z: 0}
 --- !u!1 &5541579336822909515
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +196,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5541579336822909513}
   - component: {fileID: 5541579336822909514}
+  - component: {fileID: 1961599839144488669}
+  - component: {fileID: -4889674430141011415}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -233,7 +235,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementLerpTime: 0.18
   invalidLerpNudgeRatio: 0.25
+  jumpInitialForce: 250
+  jumpDeterRate: 0.6
+  jumpLimit: 2
   lanePosition: 0
+--- !u!114 &1961599839144488669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541579336822909515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142cb8c690370cc499738c4ecd842b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightMask:
+    serializedVersion: 2
+    m_Bits: 8
+  darkMask:
+    serializedVersion: 2
+    m_Bits: 9
+  bufferDist: 0.040000003
+  stepDist: 0.01
+--- !u!54 &-4889674430141011415
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541579336822909515}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &5541579337405726720
 GameObject:
   m_ObjectHideFlags: 0
