@@ -11,6 +11,8 @@ public class CollisionHelper : MonoBehaviour {
     public LayerMask darkMask = 9;
 
     private bool isTouchingGround;
+    private bool isTouchingGroundLight;
+    private bool isTouchingGroundDark;
     private Vector2 groundNormalAngle;
 
     // Colliders holds this game object's colliders
@@ -31,6 +33,8 @@ public class CollisionHelper : MonoBehaviour {
     void Start ()
     {
         isTouchingGround = false;
+        isTouchingGroundLight = false;
+        isTouchingGroundDark = false;
         groundNormalAngle = Vector2.zero;
     }
 	
@@ -38,7 +42,7 @@ public class CollisionHelper : MonoBehaviour {
 	void Update ()
     {
         // Check if touching ground
-        isTouchingGround = UpdateIsTouchingGround();
+        UpdateIsTouchingGround();
     }
 
 #region Public Functions
@@ -50,44 +54,28 @@ public class CollisionHelper : MonoBehaviour {
 
     #endregion
 
-    private bool UpdateIsTouchingGround()
+    private void UpdateIsTouchingGround()
     {
-        bool retVal = false;
+        // Reset flags
+        isTouchingGround = false;
+        isTouchingGroundDark = false;
+        isTouchingGroundLight = false;
 
-        // Check if touching ground
+        // Check if any of the colliders are touching the ground
         for (int i = 0; i < colliders.Count; i++)
         {
-            // Check if any collider is touching the ground
-            Vector3 colOffset = Vector3.Scale(colliders[i].bounds.center, transform.localScale);
+            // Get the position and distance
+            Vector3 colPosition = colliders[i].bounds.center; // This is already in world space. Don't do complicated math on it.
             Vector3 colSize = Vector3.Scale(colliders[i].bounds.size, transform.localScale);
 
-            float distance = colSize.y / 2f + bufferDist;
-            Vector3 position = transform.position + new Vector3(colOffset.x, colOffset.y);
+            float distance = colSize.y / 2.0f + bufferDist;
 
-
-            bool hitGround = Physics.Raycast(position, Vector3.down, distance, lightMask);
-
-            /*
-            // Check if touching slanted ground 
-            if (!hitGround)
-            {
-                float groundDistAngle = Mathf.Sqrt(2 * distance * distance);
-
-                hitGround = Physics.Raycast(position, Vector3.down, groundDistAngle, lightMask);
-            }
-            */
-
-            retVal = hitGround;
-
-            // Break if true
-            if (retVal)
-                return retVal;
-
+            // Perform the raycast(s) if necessary
+            isTouchingGroundLight |= Physics.Raycast(colPosition, Vector3.down, distance, lightMask);
+            isTouchingGroundDark |= Physics.Raycast(colPosition, Vector3.down, distance, darkMask);
         }
 
-        Debug.Log("Hitting ground?: " + retVal);
-
-        return retVal;
+        isTouchingGround = isTouchingGroundLight || isTouchingGroundDark;
     }
 
 

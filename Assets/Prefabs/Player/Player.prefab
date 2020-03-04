@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5541579335612798463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.89223945, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5541579336822909513}
@@ -120,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5541579336290744146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.85, z: 0}
   m_LocalScale: {x: 1, y: 0.11, z: 1}
   m_Children:
   - {fileID: 5541579337405726735}
@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5541579336822909515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.97, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5541579336290744145}
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementLerpTime: 0.18
   invalidLerpNudgeRatio: 0.25
-  jumpInitialForce: 250
-  jumpDeterRate: 0.6
+  jumpInitialForce: 75
+  jumpDeterRate: 0.87
   jumpLimit: 2
   lanePosition: 0
 --- !u!114 &1961599839144488669
@@ -253,10 +253,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   darkMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 512
   bufferDist: 0.040000003
   stepDist: 0.01
 --- !u!54 &-4889674430141011415
@@ -267,13 +267,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5541579336822909515}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.25
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!1 &5541579337405726720
 GameObject:

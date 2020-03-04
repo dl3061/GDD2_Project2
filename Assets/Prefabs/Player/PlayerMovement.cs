@@ -187,6 +187,14 @@ public class PlayerMovement : MonoBehaviour
                     jumpForce.y = jumpInitialForce * Mathf.Pow(jumpDeterRate, jumpTimer) * Time.deltaTime;
                 }
             }
+            else if (input.GetJumpUp())
+            {
+                // Cancel the body's upward velocity so it doesn't seem too floaty
+                Vector3 velocity = body.velocity;
+                if (velocity.y > 0)
+                    velocity.y = 0;
+                // body.velocity = velocity;
+            }
             body.AddForce(jumpForce);
         }
 

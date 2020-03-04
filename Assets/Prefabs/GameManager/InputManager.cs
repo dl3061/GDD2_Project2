@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     private bool moveRightDown;
     private bool jump;
     private bool jumpDown;
+    private bool jumpUp;
     private bool speedIncrease;
     private bool speedIncreaseDown;
     private bool speedDecrease;
@@ -40,17 +41,18 @@ public class InputManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-            move = Vector2.zero;
-            moveLeft = false;
-            moveLeftDown = false;
-            moveRight = false;
-            moveRightDown = false;
-            jump = false;
-            jumpDown = false;
-            speedIncrease = false;
-            speedIncreaseDown = false;
-            speedDecrease = false;
-            speedDecreaseDown = false;
+        move = Vector2.zero;
+        moveLeft = false;
+        moveLeftDown = false;
+        moveRight = false;
+        moveRightDown = false;
+        jump = false;
+        jumpDown = false;
+        jumpUp = false;
+        speedIncrease = false;
+        speedIncreaseDown = false;
+        speedDecrease = false;
+        speedDecreaseDown = false;
     }
 
 
@@ -71,7 +73,8 @@ public class InputManager : MonoBehaviour
         moveRightDown = Input.GetKeyDown(KeyCode.RightArrow);
 
         jump = Input.GetKey(KeyCode.Space);
-        jumpDown = Input.GetKey(KeyCode.Space);
+        jumpDown = Input.GetKeyDown(KeyCode.Space);
+        jumpUp = Input.GetKeyUp(KeyCode.Space);
 
         speedIncrease = Input.GetKey(KeyCode.UpArrow);
         speedIncreaseDown = Input.GetKeyDown(KeyCode.UpArrow);
@@ -116,6 +119,11 @@ public class InputManager : MonoBehaviour
     public bool GetJumpDown()
     {
         return jumpDown;
+    }
+
+    public bool GetJumpUp()
+    {
+        return jumpUp;
     }
 
     public bool GetSpeedIncrease()
