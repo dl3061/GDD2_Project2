@@ -127,6 +127,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1961599839144488669, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: darkMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909513, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -140,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 5541579336822909513, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909513, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
@@ -181,6 +186,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541579336822909514, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: jumpInitialForce
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541579336822909514, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: jumpLimit
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909515, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
@@ -266,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932858131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -30}
+  m_LocalPosition: {x: 0, y: 3, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -385,6 +400,11 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultScrollSpeed
       value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
+        type: 3}
+      propertyPath: LaneWidth
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2747744735294330836, guid: 287814835dfd31a418d48a4b048be95d,
         type: 3}
