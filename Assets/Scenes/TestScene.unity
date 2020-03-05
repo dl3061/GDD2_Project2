@@ -127,6 +127,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4889674430141011415, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: m_Mass
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1961599839144488669, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: darkMask.m_Bits
@@ -140,12 +145,12 @@ PrefabInstance:
     - target: {fileID: 5541579336822909513, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909513, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909513, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
@@ -190,12 +195,22 @@ PrefabInstance:
     - target: {fileID: 5541579336822909514, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: jumpInitialForce
-      value: 150
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909514, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: jumpLimit
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541579336822909514, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: jumpDeterRate
+      value: 0.356
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541579336822909514, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: lanePosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909515, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
@@ -281,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932858131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -15}
+  m_LocalPosition: {x: 0, y: 3, z: -33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
