@@ -12,14 +12,36 @@ public class GameManager : MonoBehaviour
     [Tooltip("The Player itself, so other scripts can reference it statically")]
     public GameObject ActivePlayer;
 
+
+    [Header("Game Speed Control")]
+
     [Tooltip("The default scroll speed of the game.")]
-    public float defaultScrollSpeed = -2f;
+    public float defaultScrollSpeed = -6f;
+
+    [Tooltip("The scroll speed to go at when the player presses Up.")]
+    public float fastScrollSpeed = -12f;
+
+    [Tooltip("The scroll speed to go at when the player presses Down.")]
+    public float slowScrollSpeed = -2f;
+
+    [Tooltip("The scroll speed to go at when the player is toggling.")]
+    public float midtoggleScrollSpeed = 0.01f;
+
+    [Tooltip("How long the toggle delay exists when toggling.")]
+    public float midtoggleDelayTime = 0.25f;
+    private float midtoggleDelayTimer = 0f;
+
+
+    [Header("Game Configuration")]
 
     [Tooltip("How many lanes are in the game. Should be 3.")]
     public int NumberOfLanes = 3;
 
     [Tooltip("How wide is a lane.")]
     public float LaneWidth = 1;
+
+
+    [Header("Game Events")]
 
     [Tooltip("The event to throw ")]
     public GameEvent ResetEvent;
@@ -29,6 +51,9 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("The event to throw when toggling polarity")]
     public GameEvent TogglePolarityEvent;
+
+
+    [Header("Serialized Fields")]
 
     // The current scroll speed
     [SerializeField]
@@ -58,6 +83,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currScrollSpeed = defaultScrollSpeed;
+
+        midtoggleDelayTimer = 0f;
     }
 
 
@@ -66,7 +93,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // Update the values 
+        // Check for events
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -78,6 +105,30 @@ public class GameManager : MonoBehaviour
         {
             if (TogglePolarityEvent != null)
                 TogglePolarityEvent.Raise();
+        }
+
+
+        // Control the scroll speed
+        if (midtoggleDelayTimer > 0f)
+        {
+            currScrollSpeed = midtoggleScrollSpeed;
+
+            midtoggleDelayTimer -= Time.deltaTime;
+        }
+        else
+        {
+            if (InputManager.Singleton.GetSpeedIncrease())
+            {
+                currScrollSpeed = fastScrollSpeed;
+            }
+            else if (InputManager.Singleton.GetSpeedDecrease())
+            {
+                currScrollSpeed = slowScrollSpeed;
+            }
+            else
+            {
+                currScrollSpeed = defaultScrollSpeed;
+            }
         }
     }
 

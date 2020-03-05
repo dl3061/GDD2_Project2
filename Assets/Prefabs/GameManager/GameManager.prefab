@@ -47,6 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivePlayer: {fileID: 0}
   defaultScrollSpeed: -6
+  fastScrollSpeed: -8
+  slowScrollSpeed: -1
+  midtoggleScrollSpeed: 0.01
+  midtoggleDelayTime: 0.25
   NumberOfLanes: 3
   LaneWidth: 2
   ResetEvent: {fileID: 11400000, guid: bf36f723a27582744a7532b7f1d4eff6, type: 2}

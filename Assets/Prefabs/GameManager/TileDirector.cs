@@ -11,6 +11,8 @@ public class TileDirector : MonoBehaviour
     [SerializeField]
     Formation currentFormation;
     Object[] formations;
+
+    [SerializeField]
     float formationTimer;
 
     [SerializeField]
@@ -45,6 +47,8 @@ public class TileDirector : MonoBehaviour
 
     private void Update()
     {
+        float currDelay = delay * Mathf.Abs((-6f)/GameManager.Singleton.GetCurrentScrollSpeed());
+
         foreach(GameObject t in tiles)
         {
            if(t.transform.position.z < formationDespawnThreshold)
@@ -57,7 +61,7 @@ public class TileDirector : MonoBehaviour
             //2.68 base
             //As scroll speed is multiplied by x, delay is divided by x
             
-            formationTimer = Time.realtimeSinceStartup + delay;
+            formationTimer = Time.realtimeSinceStartup + currDelay;
             foreach (Formation.formationDetail f in currentFormation.formationDetails)
             {
                 GameObject tile = getReadyTile();
