@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a28c111dc182647bc051a6df296414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 693830023}
+  rotational_scale: 30
 --- !u!1 &1627829667
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +479,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 557754765, guid: 5235771b4b331064aa9a98c0ec07d0bd, type: 3}
+      propertyPath: existenceTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4684739430508316915, guid: 5235771b4b331064aa9a98c0ec07d0bd,
         type: 3}
       propertyPath: m_Name

@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isLerping && (input.GetMoveLeft() || input.GetMoveRight()) && multilaneMoveDelayTimer >= multilaneMoveDelayTime)
         {
             // Set player state flags
-            isWaiting = false;
+            // isWaiting = false;
 
             // Calc which lane we want to move to.
             bool isValidMove = true;

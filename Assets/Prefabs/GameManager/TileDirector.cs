@@ -81,8 +81,6 @@ public class TileDirector : MonoBehaviour
 
             formationDistanceTravelled = 0f;
             formationDistanceToNext = currentFormation.GetLength();
-
-            Debug.Log(formationDistanceToNext);
         } 
     }
 
