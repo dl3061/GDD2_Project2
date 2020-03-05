@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
         get; private set;
     }
 
+    [Tooltip("The Player itself, so other scripts can reference it statically")]
+    public GameObject ActivePlayer;
+
     [Tooltip("The default scroll speed of the game.")]
     public float defaultScrollSpeed = -2f;
 
@@ -39,6 +42,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameManager.Singleton = this;
+
+        if (ActivePlayer == null)
+        {
+            // This should be avoided at all costs but it's safer than something that needs a static reference to the player breaking.
+            ActivePlayer = GameObject.Find("Player");
+        }
     }
 
 

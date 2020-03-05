@@ -35,7 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
     // Variables for jumping
     private int jumpCount = 0;              // How many times the player has jumped.
-    private float jumpTimer = 0f;           
+    private float jumpTimer = 0f;
+
+    // Player state
+    private bool isWaiting;                 // True when the game resets until the player does something.
 
     // Which lane is the user in
     private int initLanePosition;
@@ -71,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
         isLerping = false;
         isLerpingToInvalidTile = false;
         laneWidth = GameManager.Singleton.LaneWidth;
+
+        // Initialize player state
+        isWaiting = true;
 
         // Reset timers
         movementLerpTimer = 0f;
@@ -129,6 +135,9 @@ public class PlayerMovement : MonoBehaviour
         // Check for movements
         if (!isLerping && (input.GetMoveLeftDown() || input.GetMoveRightDown()))
         {
+            // Set player state flags
+            isWaiting = false;
+
             // Calc which lane we want to move to.
             bool isValidMove = true;
             int nextLanePosition = lanePosition;
@@ -168,6 +177,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (input.GetJumpDown() && jumpCount < jumpLimit)
                 {
+                    // Set player state flags
+                    isWaiting = false;
+
                     // This is the first frame of jumping -> apply max force.
                     jumpForce.y = jumpInitialForce;
                     jumpTimer = 0f;
@@ -205,16 +217,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetEventHandler()
     {
-        // Init position
+        // Reset position
         transform.position = initPosition;
         lanePosition = initLanePosition;
 
-        // Init variables
+        // Reset variables
         lerpSource = 0f;
         lerpDestination = 0f;
         isLerping = false;
         isLerpingToInvalidTile = false;
         laneWidth = GameManager.Singleton.LaneWidth;
+
+        // Reset player state
+        isWaiting = true;
 
         // Reset timers
         movementLerpTimer = 0f;
@@ -224,4 +239,14 @@ public class PlayerMovement : MonoBehaviour
     {
         
     }
+
+
+    #region public accessors
+
+    public bool IsWaiting()
+    {
+        return isWaiting;
+    }
+
+    #endregion
 }

@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 5541579336822909514}
   - component: {fileID: 1961599839144488669}
   - component: {fileID: -4889674430141011415}
+  - component: {fileID: 693830024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -235,10 +236,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementLerpTime: 0.18
   invalidLerpNudgeRatio: 0.25
-  jumpInitialForce: 75
-  jumpDeterRate: 0.87
-  jumpLimit: 2
-  lanePosition: 0
+  jumpInitialForce: 3000
+  jumpDeterRate: 0.356
+  jumpLimit: 20
+  lanePosition: 1
 --- !u!114 &1961599839144488669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5541579336822909515}
   serializedVersion: 2
-  m_Mass: 0.25
+  m_Mass: 9
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -275,6 +276,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &693830024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541579336822909515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7064a621f7736804e85e47ffdcc73c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: bf36f723a27582744a7532b7f1d4eff6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5541579336822909514}
+        m_MethodName: ResetEventHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5541579337405726720
 GameObject:
   m_ObjectHideFlags: 0
