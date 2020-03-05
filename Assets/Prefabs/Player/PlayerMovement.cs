@@ -221,6 +221,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = initPosition;
         lanePosition = initLanePosition;
 
+        // Clear velocity
+        body.velocity = Vector3.zero;
+
         // Reset variables
         lerpSource = 0f;
         lerpDestination = 0f;
