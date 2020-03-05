@@ -182,37 +182,34 @@ public class PlayerMovement : MonoBehaviour
             Vector2 jumpForce = Vector2.zero;
             if (input.GetJump())
             {
-                if (input.GetJumpDown() && jumpCount < jumpLimit)
+                if (jumpCount < jumpLimit)
                 {
-                    // Set player state flags
-                    isWaiting = false;
+                    if (input.GetJumpDown())
+                    {
+                        // Set player state flags
+                        isWaiting = false;
 
-                    // This is the first frame of jumping -> apply max force.
-                    jumpForce.y = jumpInitialForce;
-                    jumpTimer = 0f;
+                        // This is the first frame of jumping -> apply max force.
+                        jumpForce.y = jumpInitialForce;
+                        jumpTimer = 0f;
 
-                    // Reset the vertical velocity to zero.
-                    Vector2 newVelocity = body.velocity;
-                    newVelocity.y = 0;
-                    body.velocity = newVelocity;
-
-                    // Increase jumpCount
-                    jumpCount += 1;
-                }
-                else
-                {
-                    // Increment timer, and apply deterioated jump rate.
-                    jumpTimer += Time.deltaTime;
-                    jumpForce.y = jumpInitialForce * Mathf.Pow(jumpDeterRate, jumpTimer) * Time.deltaTime;
+                        // Reset the vertical velocity to zero.
+                        Vector2 newVelocity = body.velocity;
+                        newVelocity.y = 0;
+                        body.velocity = newVelocity;
+                    }
+                    else
+                    {
+                        // Increment timer, and apply deterioated jump rate.
+                        jumpTimer += Time.deltaTime;
+                        jumpForce.y = jumpInitialForce * Mathf.Pow(jumpDeterRate, jumpTimer) * Time.deltaTime;
+                    }
                 }
             }
             else if (input.GetJumpUp())
             {
-                // Cancel the body's upward velocity so it doesn't seem too floaty
-                Vector3 velocity = body.velocity;
-                if (velocity.y > 0)
-                    velocity.y = 0;
-                // body.velocity = velocity;
+                // Increase jumpCount
+                jumpCount += 1;
             }
             body.AddForce(jumpForce, ForceMode.Force);
         }
