@@ -10,7 +10,7 @@ public class TileDirector : MonoBehaviour
     List<GameObject> tiles;
     [SerializeField]
     Formation currentFormation;
-
+    Object[] formations;
     float formationTimer;
 
     [SerializeField]
@@ -20,12 +20,7 @@ public class TileDirector : MonoBehaviour
     float formationDespawnThreshold = -30.0f;
     private void Start()
     {
-        for(int i = 0; i < 30; i++)
-        {
-            GameObject tile = Instantiate(tilePrefab);
-            tile.SetActive(false);
-            tiles.Add(tile);
-        }
+        formations = Resources.LoadAll("Formations",typeof(Formation));
     }
 
     GameObject getReadyTile()
@@ -37,6 +32,12 @@ public class TileDirector : MonoBehaviour
             {
                 returnObj = t;
             }
+        }
+        if(returnObj == null)
+        {
+            GameObject i = Instantiate(tilePrefab);
+            tiles.Add(i);
+            returnObj = i;
         }
         return returnObj;
         
@@ -65,7 +66,8 @@ public class TileDirector : MonoBehaviour
                 tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarities[Random.Range(0,f.polarities.Count)];
                 tile.SetActive(true);
             }
-        }
+            currentFormation = (Formation)formations[Random.Range(0, formations.Length)];
+        } 
     }
 
 }
