@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Formation")]
 public class Formation : ScriptableObject
 {
-    [SerializeField]
-    int lanes;
     [System.Serializable]
     public struct formationDetail
     {
