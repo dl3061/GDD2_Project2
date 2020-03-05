@@ -64,6 +64,7 @@ public class TileDirector : MonoBehaviour
                 tile.transform.position = f.formationPositionDetails;
                 tile.transform.localScale = f.formationScaleDetails;
                 tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarities[Random.Range(0,f.polarities.Count)];
+                tile.GetComponent<PolarityToggle>().ResetEvent();
                 tile.SetActive(true);
             }
             currentFormation = (Formation)formations[Random.Range(0, formations.Length)];
