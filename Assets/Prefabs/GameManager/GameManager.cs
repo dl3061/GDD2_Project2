@@ -18,6 +18,15 @@ public class GameManager : MonoBehaviour
     [Tooltip("How wide is a lane.")]
     public float LaneWidth = 1;
 
+    [Tooltip("The event to throw ")]
+    public GameEvent ResetEvent;
+
+    [Tooltip("The event to throw ")]
+    public GameEvent PauseEvent;
+
+    [Tooltip("The event to throw when toggling polarity")]
+    public GameEvent TogglePolarityEvent;
+
     // The current scroll speed
     [SerializeField]
     private float currScrollSpeed = 0f; 
@@ -49,6 +58,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Update the values 
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (ResetEvent != null)
+                ResetEvent.Raise();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (TogglePolarityEvent != null)
+                TogglePolarityEvent.Raise();
+        }
     }
 
 

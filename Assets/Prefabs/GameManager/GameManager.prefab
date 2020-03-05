@@ -45,7 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e3e1dd45334224f87d66e1626edf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultScrollSpeed: -3
+  defaultScrollSpeed: -6
+  NumberOfLanes: 3
+  LaneWidth: 2
+  ResetEvent: {fileID: 11400000, guid: bf36f723a27582744a7532b7f1d4eff6, type: 2}
+  PauseEvent: {fileID: 11400000, guid: 0f02899659824624c8bd455a27fd6ed1, type: 2}
+  TogglePolarityEvent: {fileID: 11400000, guid: 7a98020e9caed864f936237dee02192e,
+    type: 2}
+  currScrollSpeed: 0
 --- !u!114 &-5057375223356145360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,4 +80,5 @@ MonoBehaviour:
   tilePrefab: {fileID: 9002088369504968948, guid: dbaa1d6817b72b8468b4986e86cd6823,
     type: 3}
   tiles: []
-  currentFormation: {fileID: 0}
+  currentFormation: {fileID: 11400000, guid: 4ccbdc081df3e6f46bd95f1243396115, type: 2}
+  delay: 0.5
