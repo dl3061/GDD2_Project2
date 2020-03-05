@@ -234,12 +234,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae42c4427ebf9645934d3c40e33b0f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 1.5
+  gravityScale: 5
   movementLerpTime: 0.18
   invalidLerpNudgeRatio: 0.25
-  jumpInitialForce: 3000
+  jumpInitialForce: 5000
   jumpDeterRate: 0.356
-  jumpLimit: 20
+  jumpLimit: 2
   lanePosition: 1
 --- !u!114 &1961599839144488669
 MonoBehaviour:
