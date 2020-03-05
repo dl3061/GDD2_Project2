@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("The scroll speed to go at when the player presses Down.")]
     public float slowScrollSpeed = -2f;
 
+    [Tooltip("Max change in scroll speed per second")]
+    public float scrollAcceleration = 1f;
+
     [Tooltip("The scroll speed to go at when the player is toggling.")]
     public float midtoggleScrollSpeed = 0.01f;
 

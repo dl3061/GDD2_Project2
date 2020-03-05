@@ -13,8 +13,13 @@ public class PlayerMovement : MonoBehaviour
 
     // For lerping
     [Tooltip("How long does it take to move to a subsequent tile")]
-    public float movementLerpTime = 0.3f;
+    public float movementLerpTime = 0.18f;
     private float movementLerpTimer;
+
+    // Instead of using Leftbtn Down or Rightbtn Down, the user can hold the button. This delay is so that the player doesn't accidentally move twice when wanting to move once. 
+    [Tooltip("How long the user has to wait before a subsequent movement (ie, holding a left/right to move twice sequentially)")]
+    public float multilaneMoveDelayTime = 0.5f;
+    private float multilaneMoveDelayTimer;
 
     [Range(0.0f, 1.0f)]
     [Tooltip("How far out before the player is nudged back in, as a ratio of a tile.")]
@@ -84,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Reset timers
         movementLerpTimer = 0f;
+        multilaneMoveDelayTimer = 0f;
         jumpTimer = 0f;
     }
 
@@ -140,7 +146,8 @@ public class PlayerMovement : MonoBehaviour
         InputManager input = InputManager.Singleton;
 
         // Check for movements
-        if (!isLerping && (input.GetMoveLeftDown() || input.GetMoveRightDown()))
+        multilaneMoveDelayTimer += Time.deltaTime;
+        if (!isLerping && (input.GetMoveLeft() || input.GetMoveRight()) && multilaneMoveDelayTimer >= multilaneMoveDelayTime)
         {
             // Set player state flags
             isWaiting = false;
@@ -150,13 +157,13 @@ public class PlayerMovement : MonoBehaviour
             int nextLanePosition = lanePosition;
             int laneBounds = (GameManager.Singleton.NumberOfLanes - 1) / 2; // 1
 
-            if (input.GetMoveLeftDown())
+            if (input.GetMoveLeft())
             {
                 nextLanePosition -= 1;
                 if (nextLanePosition < (-laneBounds))
                     isValidMove = false;
             }
-            else if (input.GetMoveRightDown())
+            else if (input.GetMoveRight())
             {
                 nextLanePosition += 1;
                 if (nextLanePosition > laneBounds)
@@ -169,6 +176,8 @@ public class PlayerMovement : MonoBehaviour
             isLerpingToInvalidTile = !isValidMove;
             lerpSource = laneWidth * lanePosition;
             lerpDestination = laneWidth * nextLanePosition;
+
+            multilaneMoveDelayTimer = 0f;
 
             // Set new lane
             if (isValidMove)

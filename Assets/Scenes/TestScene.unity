@@ -182,6 +182,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5541579336822909514, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: multilaneMoveDelayTime
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5541579336822909515, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: m_Name

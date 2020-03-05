@@ -12,17 +12,20 @@ public class TileDirector : MonoBehaviour
     Formation currentFormation;
     Object[] formations;
 
-    [SerializeField]
-    float formationTimer;
 
-    [SerializeField]
-    float delay;
+    private float formationDistanceTravelled;
+
+    private float formationDistanceToNext;
 
     //Should be same z value as camera
     float formationDespawnThreshold = -30.0f;
+
     private void Start()
     {
         formations = Resources.LoadAll("Formations",typeof(Formation));
+
+        formationDistanceTravelled = 0f;
+        formationDistanceToNext = 0f;
     }
 
     GameObject getReadyTile()
@@ -47,21 +50,23 @@ public class TileDirector : MonoBehaviour
 
     private void Update()
     {
-        float currDelay = delay * Mathf.Abs((-6f)/GameManager.Singleton.GetCurrentScrollSpeed());
+        formationDistanceTravelled += Mathf.Abs(GameManager.Singleton.GetCurrentScrollSpeed() * Time.deltaTime);
 
-        foreach(GameObject t in tiles)
+        foreach (GameObject t in tiles)
         {
            if(t.transform.position.z < formationDespawnThreshold)
             {
                 t.SetActive(false);
             }
         }
-        if (currentFormation && formationTimer < Time.realtimeSinceStartup)
+
+
+        if (currentFormation && formationDistanceTravelled >= formationDistanceToNext)
         {
             //2.68 base
             //As scroll speed is multiplied by x, delay is divided by x
             
-            formationTimer = Time.realtimeSinceStartup + currDelay;
+            
             foreach (Formation.formationDetail f in currentFormation.formationDetails)
             {
                 GameObject tile = getReadyTile();
@@ -71,7 +76,13 @@ public class TileDirector : MonoBehaviour
                 tile.GetComponent<PolarityToggle>().ResetEvent();
                 tile.SetActive(true);
             }
-            currentFormation = (Formation)formations[Random.Range(0, formations.Length)];
+
+            currentFormation = (Formation) formations[Random.Range(0, formations.Length)];
+
+            formationDistanceTravelled = 0f;
+            formationDistanceToNext = currentFormation.GetLength();
+
+            Debug.Log(formationDistanceToNext);
         } 
     }
 
