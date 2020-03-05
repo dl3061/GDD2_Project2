@@ -4,13 +4,36 @@ using UnityEngine;
 
 public class PlayerYFollow : MonoBehaviour
 {
-    // Start is called before the first frame 
-    [SerializeField]
-    GameObject player;
+    [Tooltip("The offset between the camera and the player.")]
+    float offset = 3f;
+
+    public float rotational_scale = 1f; 
+
+
+    Quaternion initRotation;
+
+    private void Start()
+    {
+        initRotation = transform.rotation;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, player.transform.position.y + 3, transform.position.z);
+        if (GameManager.Singleton.ActivePlayer != null)
+        {
+            float player_y = GameManager.Singleton.ActivePlayer.transform.position.y;
+
+            // Update the y position to focus the player
+            Vector3 pos = transform.position;
+            pos.y = player_y + offset;
+
+            transform.position = pos;
+
+
+            // Rotate along the x-axis of the camera to follow the player
+            Quaternion rot = Quaternion.Euler(player_y * rotational_scale + initRotation.eulerAngles.x, initRotation.eulerAngles.y, initRotation.eulerAngles.z);
+            transform.rotation = rot;
+        }
     }
 }
