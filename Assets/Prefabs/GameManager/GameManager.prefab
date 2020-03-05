@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e3e1dd45334224f87d66e1626edf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActivePlayer: {fileID: 0}
   defaultScrollSpeed: -6
   NumberOfLanes: 3
   LaneWidth: 2

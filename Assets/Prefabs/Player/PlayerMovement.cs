@@ -7,6 +7,10 @@ public class PlayerMovement : MonoBehaviour
     // The initial '0' position of the player
     private Vector3 initPosition;
 
+    [Tooltip("Gravity Scale")]
+    public float gravityScale = 1f;
+    const float gravity = -9.81f;
+
     // For lerping
     [Tooltip("How long does it take to move to a subsequent tile")]
     public float movementLerpTime = 0.3f;
@@ -86,6 +90,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Apply gravity
+        body.AddForce(gravity * gravityScale * Vector3.up, ForceMode.Acceleration);
+
         // Check if we should play a lerp animation for the x-position
         if (isLerping)
         {
@@ -207,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
                     velocity.y = 0;
                 // body.velocity = velocity;
             }
-            body.AddForce(jumpForce);
+            body.AddForce(jumpForce, ForceMode.Force);
         }
 
         if (collisionHelper.IsTouchingGround())
