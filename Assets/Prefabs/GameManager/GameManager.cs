@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,12 +56,14 @@ public class GameManager : MonoBehaviour
     [Tooltip("The event to throw when toggling polarity")]
     public GameEvent TogglePolarityEvent;
 
+    public Text gameOverText;
 
     [Header("Serialized Fields")]
 
     // The current scroll speed
     [SerializeField]
-    private float currScrollSpeed = 0f; 
+    private float currScrollSpeed = 0f;
+
 
 
     /// <summary>
@@ -101,7 +104,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (ResetEvent != null)
+            {
                 ResetEvent.Raise();
+                Time.timeScale = 1.0f;
+                gameOverText.text = "";
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -133,6 +140,8 @@ public class GameManager : MonoBehaviour
                 currScrollSpeed = defaultScrollSpeed;
             }
         }
+
+        CheckDeath();
     }
 
 
@@ -141,6 +150,16 @@ public class GameManager : MonoBehaviour
         if (defaultScrollSpeed > 0f)
         {
             Debug.LogWarning("Scroll speed is positive, which is away from the camera by default. Are you sure you want this?");
+        }
+    }
+
+    void CheckDeath()
+    {
+        if(ActivePlayer.transform.position.y < -6.0f)
+        {
+            Debug.Log("Game Over");
+            Time.timeScale = 0.0f;
+            gameOverText.text = "You Died!";
         }
     }
 
