@@ -106,8 +106,6 @@ public class GameManager : MonoBehaviour
             if (ResetEvent != null)
             {
                 ResetEvent.Raise();
-                Time.timeScale = 1.0f;
-                gameOverText.text = "";
             }
         }
 
@@ -158,8 +156,11 @@ public class GameManager : MonoBehaviour
         if(ActivePlayer.transform.position.y < -6.0f)
         {
             Debug.Log("Game Over");
+
             Time.timeScale = 0.0f;
-            gameOverText.text = "You Died!";
+
+            if (gameOverText != null)
+                gameOverText.text = "You Died!";
         }
     }
 
@@ -178,18 +179,24 @@ public class GameManager : MonoBehaviour
         // Reset scroll speed to default scroll speed.
         currScrollSpeed = defaultScrollSpeed;
 
+        // Reset timers
         midtoggleDelayTimer = 0f;
+
+        // Unpause if necessary
+        Time.timeScale = 1.0f;
     }
 
 
     public void PauseEventHandler()
     {
+        // Pause
         Time.timeScale = 0f;
     }
 
 
     public void UnpauseEventHandler()
     {
+        // Unpause
         Time.timeScale = 1f;
     }
 
