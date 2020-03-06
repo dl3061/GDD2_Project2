@@ -49,5 +49,4 @@ public class PlayerPolarity : PolarityToggle
         // When in light mode, ignore dark mask collisions. When in dark mode or neutral, don't ignore.
         Physics.IgnoreLayerCollision(darkLayer, playerLayer, currentPolarity == Polarity.Light);
     }
-
 }
