@@ -100,7 +100,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Apply gravity
-        body.AddForce(gravity * gravityScale * Vector3.up, ForceMode.Acceleration);
+        if (transform.position.y >= -5f)
+            body.AddForce(gravity * gravityScale * Vector3.up, ForceMode.Acceleration);
 
         // Check if we should play a lerp animation for the x-position
         if (isLerping)
