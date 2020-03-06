@@ -68,23 +68,23 @@ public class InputManager : MonoBehaviour
         move.y = Input.GetAxis("Vertical");
 
         // Update the values
-        moveLeft = Input.GetKey(KeyCode.LeftArrow);
-        moveLeftDown = Input.GetKeyDown(KeyCode.LeftArrow);
+        moveLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
+        moveLeftDown = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
 
-        moveRight = Input.GetKey(KeyCode.RightArrow);
-        moveRightDown = Input.GetKeyDown(KeyCode.RightArrow);
+        moveRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
+        moveRightDown = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
 
         jump = Input.GetKey(KeyCode.Space);
         jumpDown = Input.GetKeyDown(KeyCode.Space);
         jumpUp = Input.GetKeyUp(KeyCode.Space);
 
-        speedIncrease = Input.GetKey(KeyCode.UpArrow);
-        speedIncreaseDown = Input.GetKeyDown(KeyCode.UpArrow);
+        speedIncrease = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        speedIncreaseDown = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
 
-        speedDecrease = Input.GetKey(KeyCode.DownArrow);
-        speedDecreaseDown = Input.GetKeyDown(KeyCode.DownArrow);
+        speedDecrease = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+        speedDecreaseDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
 
-        transition = Input.GetKeyDown(KeyCode.LeftShift);
+        transition = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.CapsLock);
     }
 
 
