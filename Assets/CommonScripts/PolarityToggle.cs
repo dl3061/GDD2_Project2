@@ -22,12 +22,12 @@ public class PolarityToggle : MonoBehaviour
 
 
     // The current polarity
-    private Polarity currentPolarity;
+    protected Polarity currentPolarity;
 
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
-    private void Start()
+    protected virtual void Start()
     {
         // Initialize the game object activeness to the default polarity
         UpdateObjectActiveness(defaultPolarity);
@@ -40,7 +40,7 @@ public class PolarityToggle : MonoBehaviour
     /// <summary>
     /// Update is called once per frame
     /// </summary>
-    private void Update()
+    protected virtual void Update()
     {
         // Reinforce the current active polarity, unless neutral (in which case do nothing).
         UpdateObjectActiveness(currentPolarity);
@@ -78,7 +78,7 @@ public class PolarityToggle : MonoBehaviour
     /// <summary>
     /// Reset Event Handler. Call when resetting (ie restarting) the game.
     /// </summary>
-    public void ResetEvent()
+    public virtual void ResetEvent()
     {
         currentPolarity = defaultPolarity;
     }

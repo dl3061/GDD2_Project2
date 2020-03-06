@@ -93,7 +93,10 @@ public class PlayerMovement : MonoBehaviour
         jumpTimer = 0f;
     }
 
-    // Update is called once per frame
+
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
         // Apply gravity
@@ -228,6 +231,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Reset Event Handler
+    /// </summary>
     public void ResetEventHandler()
     {
         // Reset position
@@ -249,11 +255,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Reset timers
         movementLerpTimer = 0f;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
     }
 
 
