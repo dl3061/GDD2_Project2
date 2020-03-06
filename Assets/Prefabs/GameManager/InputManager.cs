@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
     private bool speedIncreaseDown;
     private bool speedDecrease;
     private bool speedDecreaseDown;
+    private bool transition;
 
 
     /// <summary>
@@ -53,6 +54,7 @@ public class InputManager : MonoBehaviour
         speedIncreaseDown = false;
         speedDecrease = false;
         speedDecreaseDown = false;
+        transition = false;
     }
 
 
@@ -81,6 +83,8 @@ public class InputManager : MonoBehaviour
 
         speedDecrease = Input.GetKey(KeyCode.DownArrow);
         speedDecreaseDown = Input.GetKeyDown(KeyCode.DownArrow);
+
+        transition = Input.GetKeyDown(KeyCode.LeftShift);
     }
 
 

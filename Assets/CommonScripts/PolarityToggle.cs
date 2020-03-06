@@ -9,17 +9,14 @@ using UnityEngine;
 public class PolarityToggle : MonoBehaviour
 {
     [Tooltip("The polarity to be initialized to. If Neutral, this script does nothing.")]
-    public Polarity defaultPolarity = Polarity.Neutral;
+    public Polarity defaultPolarity = Polarity.Light;
 
-    [Tooltip("The gameobject that appears when in neutral form.")]
-    public GameObject neutralObject;
+    public GameObject gameObject;
 
-    [Tooltip("The gameobject that appears when in lightside.")]
-    public GameObject lightObject;
+    public Material material;
 
-    [Tooltip("The gameobject that appears when in darkside.")]
-    public GameObject darkObject;
-
+    public float alpha = 0; //controlls visual state
+    bool isTransitioning = false;
 
     // The current polarity
     protected Polarity currentPolarity;
@@ -44,6 +41,48 @@ public class PolarityToggle : MonoBehaviour
     {
         // Reinforce the current active polarity, unless neutral (in which case do nothing).
         UpdateObjectActiveness(currentPolarity);
+
+        if(isTransitioning)
+        {
+            if (currentPolarity == Polarity.Light)
+            {
+                alpha += 0.01f;
+            }
+            else
+            {
+                alpha -= 0.01f;
+            }
+
+            Debug.Log(alpha);
+
+            //player material lerp
+            material.SetFloat("Vector1_9152EDBB", Mathf.Lerp(0, 1, alpha));
+
+            //platform material lerp
+            if (currentPolarity != defaultPolarity)
+            {
+                material.SetFloat("Vector1_7E84E80", Mathf.Lerp(0.4f, 1, alpha));
+            }
+            else
+            {
+                material.SetFloat("Vector1_7E84E80", Mathf.Lerp(1, 0.4f, alpha));
+            }
+
+            
+
+            if ((alpha > 1 && currentPolarity == Polarity.Light) || (alpha < 0 && currentPolarity == Polarity.Dark))
+            {
+                isTransitioning = false;
+                if (currentPolarity == Polarity.Light)
+                {
+                    currentPolarity = Polarity.Dark;
+                }
+                else
+                {
+                    currentPolarity = Polarity.Light;
+                }
+            }
+        }
     }
 
 
@@ -62,14 +101,14 @@ public class PolarityToggle : MonoBehaviour
     /// <param name="polarity"></param>
     private void UpdateObjectActiveness(Polarity polarity)
     {
-        if (neutralObject != null)
-            neutralObject.SetActive(polarity == Polarity.Neutral);
+        //if (neutralObject != null)
+            //neutralObject.SetActive(polarity == Polarity.Neutral);
 
-        if (lightObject != null)
-            lightObject.SetActive(polarity == Polarity.Light);
+       // if (lightObject != null)
+           // lightObject.SetActive(polarity == Polarity.Light);
 
-        if (darkObject != null)
-            darkObject.SetActive(polarity == Polarity.Dark);
+        //if (darkObject != null)
+            //darkObject.SetActive(polarity == Polarity.Dark);
     }
 
 
@@ -89,18 +128,23 @@ public class PolarityToggle : MonoBehaviour
     /// </summary>
     public void TogglePolarity()
     {
-        if (currentPolarity == Polarity.Light)
+        if(isTransitioning == false)
         {
-            currentPolarity = Polarity.Dark;
+            isTransitioning = true;
         }
-        else if (currentPolarity == Polarity.Dark)
-        {
-            currentPolarity = Polarity.Light;
-        }
-        else
-        {
-            // Neutral case. Do nothing.
-        }
+
+        //if (currentPolarity == Polarity.Light)
+        //{
+        //    currentPolarity = Polarity.Dark;
+        //}
+        //else if (currentPolarity == Polarity.Dark)
+        //{
+        //    currentPolarity = Polarity.Light;
+        //}
+        //else
+        //{
+        //    // Neutral case. Do nothing.
+        //}
     }
 
 
