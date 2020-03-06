@@ -370,7 +370,9 @@ MonoBehaviour:
 
     Use arrow keys to move.
 
-    Press space to jump.
+    Press Space to jump.
+
+    Hold Up to speed up or Down to speed down.
 
     Use LeftShift to shift polarities.
 
