@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5541579335612798460}
   - component: {fileID: 5541579335612798461}
   - component: {fileID: 5541579335612798462}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 5541579336290744158}
   - component: {fileID: 5541579336290744159}
   - component: {fileID: 5541579336290744144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: -4889674430141011415}
   - component: {fileID: 693830024}
   - component: {fileID: 8896015961858659018}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityScale: 5
   movementLerpTime: 0.18
-  multilaneMoveDelayTime: 0.5
+  multilaneMoveDelayTime: 0.25
   invalidLerpNudgeRatio: 0.25
   jumpInitialForce: 5000
   jumpDeterRate: 0.356
@@ -333,7 +333,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 9212625406326359456}
-        m_MethodName: ResetEventHandler
+        m_MethodName: ResetEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 5541579337405726732}
   - component: {fileID: 5541579337405726733}
   - component: {fileID: 5541579337405726734}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

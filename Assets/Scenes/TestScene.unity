@@ -232,6 +232,11 @@ PrefabInstance:
       propertyPath: darkObject
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9212625406326359456, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: defaultPolarity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77af9178cc9c389408dcc70ec66f706a, type: 3}
 --- !u!1 &693830023 stripped
