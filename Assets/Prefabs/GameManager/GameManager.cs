@@ -184,6 +184,9 @@ public class GameManager : MonoBehaviour
 
         // Unpause if necessary
         Time.timeScale = 1.0f;
+
+        if (gameOverText != null)
+            gameOverText.text = "";
     }
 
 
