@@ -7,7 +7,7 @@ public class CollisionHelper : MonoBehaviour {
     [Tooltip("The mask for the light elements")]
     public LayerMask lightMask = 8;
 
-    [Tooltip("The mask for the darl=ing in the franxx elements")]
+    [Tooltip("The mask for the dark elements")]
     public LayerMask darkMask = 9;
 
     private bool isTouchingGround;
@@ -54,6 +54,10 @@ public class CollisionHelper : MonoBehaviour {
 
     #endregion
 
+
+    /// <summary>
+    /// 
+    /// </summary>
     private void UpdateIsTouchingGround()
     {
         // Reset flags

@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     [Tooltip("The Player itself, so other scripts can reference it statically")]
     public GameObject ActivePlayer;
 
-
     [Header("Game Speed Control")]
 
     [Tooltip("The default scroll speed of the game.")]
@@ -26,7 +25,7 @@ public class GameManager : MonoBehaviour
     public float slowScrollSpeed = -2f;
 
     [Tooltip("Max change in scroll speed per second")]
-    public float scrollAcceleration = 1f;
+    public float scrollAcceleration = 3f;
 
     [Tooltip("The scroll speed to go at when the player is toggling.")]
     public float midtoggleScrollSpeed = 0.01f;
@@ -88,6 +87,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // Initialize scroll speed to current scroll speed.
         currScrollSpeed = defaultScrollSpeed;
 
         midtoggleDelayTimer = 0f;
@@ -170,5 +170,32 @@ public class GameManager : MonoBehaviour
     public float GetCurrentScrollSpeed()
     {
         return currScrollSpeed;
+    }
+
+
+    public void ResetEventHandler()
+    {
+        // Reset scroll speed to default scroll speed.
+        currScrollSpeed = defaultScrollSpeed;
+
+        midtoggleDelayTimer = 0f;
+    }
+
+
+    public void PauseEventHandler()
+    {
+        Time.timeScale = 0f;
+    }
+
+
+    public void UnpauseEventHandler()
+    {
+        Time.timeScale = 1f;
+    }
+
+
+    public void TogglePolarityEventHandler()
+    {
+        midtoggleDelayTimer = midtoggleDelayTime;
     }
 }

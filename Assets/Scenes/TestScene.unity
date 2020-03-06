@@ -560,16 +560,6 @@ PrefabInstance:
       propertyPath: ActivePlayer
       value: 
       objectReference: {fileID: 693830023}
-    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
-        type: 3}
-      propertyPath: fastScrollSpeed
-      value: -12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
-        type: 3}
-      propertyPath: slowScrollSpeed
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 2747744735294330836, guid: 287814835dfd31a418d48a4b048be95d,
         type: 3}
       propertyPath: m_LocalPosition.x
