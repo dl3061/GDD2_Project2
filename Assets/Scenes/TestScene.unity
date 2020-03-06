@@ -368,15 +368,13 @@ MonoBehaviour:
   m_Text: 'Run! You can interact with blocks with a matching polarity as your player.
 
 
-    Use arrow keys to move.
+    Use arrow keys or WASD to move.
 
     Press Space to jump.
 
-    Hold Up to speed up or Down to speed down.
+    Use Tab to shift polarities.
 
-    Use LeftShift to shift polarities.
-
-    Use Tab to respawn player.'
+    Use Escape to respawn player.'
 --- !u!222 &587545876
 CanvasRenderer:
   m_ObjectHideFlags: 0

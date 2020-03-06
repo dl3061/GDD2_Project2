@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour
     private bool speedDecrease;
     private bool speedDecreaseDown;
     private bool transition;
+    private bool transitionDown;
 
 
     /// <summary>
@@ -84,7 +85,8 @@ public class InputManager : MonoBehaviour
         speedDecrease = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
         speedDecreaseDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
 
-        transition = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.CapsLock);
+        transition = Input.GetKey(KeyCode.Tab) || Input.GetKey(KeyCode.CapsLock);
+        transitionDown = Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.CapsLock);
     }
 
 
@@ -148,6 +150,11 @@ public class InputManager : MonoBehaviour
     public bool GetSpeedDecreaseDown()
     {
         return speedDecreaseDown;
+    }
+
+    public bool GetTransitionDown()
+    {
+        return transitionDown;
     }
 
     #endregion

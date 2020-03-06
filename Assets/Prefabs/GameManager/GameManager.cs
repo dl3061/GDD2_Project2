@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     {
         // Check for events
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (ResetEvent != null)
             {
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (InputManager.Singleton.GetTransitionDown())
         {
             if (TogglePolarityEvent != null)
                 TogglePolarityEvent.Raise();
