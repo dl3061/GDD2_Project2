@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5541579335612798463, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5541579336290744146, guid: 77af9178cc9c389408dcc70ec66f706a,
         type: 3}
       propertyPath: m_Layer
@@ -211,6 +216,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212625406326359456, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: neutralObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212625406326359456, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: lightObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212625406326359456, guid: 77af9178cc9c389408dcc70ec66f706a,
+        type: 3}
+      propertyPath: darkObject
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77af9178cc9c389408dcc70ec66f706a, type: 3}
