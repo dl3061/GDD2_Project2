@@ -256,6 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056ab1da92627a14497a518a668c6542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultPolarity: 1
+  neutralObject: {fileID: 0}
+  lightObject: {fileID: 0}
+  darkObject: {fileID: 0}
   playerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -265,7 +269,6 @@ MonoBehaviour:
   darkMask:
     serializedVersion: 2
     m_Bits: 512
-  initialPolarity: 1
 --- !u!114 &1961599839144488669
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,11 +39,15 @@ public class PlayerPolarity : PolarityToggle
         // Comment this line out if you don't want to do that and do something else instead.
         base.Update();
 
+        int playerLayer = (int)Mathf.Log(playerMask.value, 2);
+        int lightLayer = (int)Mathf.Log(lightMask.value, 2);
+        int darkLayer = (int)Mathf.Log(darkMask.value, 2);
+
         // When in dark mode, ignore light mask collisions. When in light mode or neutral, don't ignore.
-        Physics.IgnoreLayerCollision(lightMask.value, playerMask.value, currentPolarity == Polarity.Dark);
+        Physics.IgnoreLayerCollision(lightLayer, playerLayer, currentPolarity == Polarity.Dark);
 
         // When in light mode, ignore dark mask collisions. When in dark mode or neutral, don't ignore.
-        Physics.IgnoreLayerCollision(darkMask.value, playerMask.value, currentPolarity == Polarity.Light);
+        Physics.IgnoreLayerCollision(darkLayer, playerLayer, currentPolarity == Polarity.Light);
     }
 
 }
