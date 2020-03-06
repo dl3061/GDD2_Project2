@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Formation1
   m_EditorClassIdentifier: Assembly-CSharp::Formation
+  lanes: 3
   formationDetails:
-  - polarities: 010000000200000000000000
+  - polarities: 0100000002000000
     formationScaleDetails: {x: 2, y: 1, z: 3}
     formationPositionDetails: {x: -2, y: 0, z: 0}
-  - polarities: 010000000200000000000000
+  - polarities: 0100000002000000
     formationScaleDetails: {x: 2, y: 1, z: 3}
     formationPositionDetails: {x: 0, y: 0, z: 0}
   - polarities: 0100000002000000

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Formation6
   m_EditorClassIdentifier: 
   formationDetails:
-  - polarities: 010000000200000000000000
+  - polarities: 0100000002000000
     formationScaleDetails: {x: 2, y: 1, z: 3}
     formationPositionDetails: {x: -2, y: 0, z: 0}
-  - polarities: 010000000200000000000000
+  - polarities: 0100000002000000
     formationScaleDetails: {x: 2, y: 1, z: 3}
     formationPositionDetails: {x: 0, y: 0, z: 0}
