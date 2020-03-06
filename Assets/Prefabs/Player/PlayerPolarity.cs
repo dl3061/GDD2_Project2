@@ -13,7 +13,15 @@ public class PlayerPolarity : PolarityToggle
     [Tooltip("The mask for the dark elements")]
     public LayerMask darkMask = 9;
 
-    Rigidbody body;
+    [Tooltip("How long does it take to shift.")]
+    public float shiftTime = .25f;
+    private float shiftTimer = 0f;
+
+    private Rigidbody body;
+
+    public Material material;
+    
+    private bool isTransitioning = false;
 
 
     private void Awake()
@@ -39,6 +47,54 @@ public class PlayerPolarity : PolarityToggle
         // Comment this line out if you don't want to do that and do something else instead.
         base.Update();
 
+        // Leo's code, under Player Polarity instead of Polarity Toggle so it only affects Player and not break everything else.
+        {
+            float alpha = 0f;
+
+            if (isTransitioning)
+            {
+                shiftTimer += Time.deltaTime;
+                if (shiftTimer > shiftTime)
+                    shiftTimer = shiftTime;
+
+                if (currentPolarity == Polarity.Light)
+                {
+                    alpha = 1.0f - shiftTimer / shiftTime;
+                }
+                else
+                {
+                    alpha = shiftTimer / shiftTime;
+                }
+
+                if (shiftTimer >= shiftTime)
+                {
+                    shiftTimer = 0f;
+                    isTransitioning = false;
+                }
+            }
+            else
+            {
+                shiftTimer = 0f;
+                isTransitioning = false;
+
+                if (currentPolarity == Polarity.Light)
+                {
+                    alpha = 0f;
+                }
+                else
+                {
+                    alpha = 1f;
+                }
+            }
+
+
+
+            // Set the float
+            material.SetFloat("Vector1_9152EDBB", alpha);
+        }
+
+
+        // Add collision checking from layers
         int playerLayer = (int)Mathf.Log(playerMask.value, 2);
         int lightLayer = (int)Mathf.Log(lightMask.value, 2);
         int darkLayer = (int)Mathf.Log(darkMask.value, 2);
@@ -50,4 +106,15 @@ public class PlayerPolarity : PolarityToggle
         Physics.IgnoreLayerCollision(darkLayer, playerLayer, currentPolarity == Polarity.Light);
     }
 
+
+    public override void TogglePolarity()
+    {
+        if (isTransitioning == false)
+        {
+            base.TogglePolarity();
+
+            shiftTimer = 0f;
+            isTransitioning = true;
+        }
+    }
 }

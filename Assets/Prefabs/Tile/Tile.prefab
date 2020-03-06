@@ -363,7 +363,6 @@ GameObject:
   - component: {fileID: 2058758361801278287}
   - component: {fileID: 8072273577161764013}
   - component: {fileID: 742444569790801685}
-  - component: {fileID: -8486848683815597722}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -401,9 +400,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultPolarity: 0
-  gameObject: {fileID: 0}
-  material: {fileID: 2100000, guid: 21828138eda314c4ba4bd555986feee7, type: 2}
-  alpha: 0
+  neutralObject: {fileID: 3756917880630035096}
+  lightObject: {fileID: 1388582500995726769}
+  darkObject: {fileID: 2206356238323378781}
+  currentPolarity: 0
 --- !u!114 &742444569790801685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,30 +416,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a6c1a9e55a51d4e93383f7ddead2c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8486848683815597722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9002088369504968948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7064a621f7736804e85e47ffdcc73c07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 7a98020e9caed864f936237dee02192e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8072273577161764013}
-        m_MethodName: TogglePolarity
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
