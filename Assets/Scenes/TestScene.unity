@@ -372,9 +372,9 @@ MonoBehaviour:
 
     Press Space to jump.
 
-    Use Tab to shift polarities.
+    Use Left Shift to shift polarities.
 
-    Use Escape to respawn player.'
+    Use Tab to respawn player.'
 --- !u!222 &587545876
 CanvasRenderer:
   m_ObjectHideFlags: 0

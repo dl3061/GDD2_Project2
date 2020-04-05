@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     {
         // Check for events
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (ResetEvent != null)
             {
