@@ -85,8 +85,8 @@ public class InputManager : MonoBehaviour
         speedDecrease = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
         speedDecreaseDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
 
-        transition = Input.GetKey(KeyCode.LeftShift);
-        transitionDown = Input.GetKeyDown(KeyCode.LeftShift);
+        transition = Input.GetKey(KeyCode.Return);
+        transitionDown = Input.GetKeyDown(KeyCode.Return);
     }
 
 
