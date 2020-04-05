@@ -372,7 +372,7 @@ MonoBehaviour:
 
     Press Space to jump.
 
-    Use Enter to shift polarities.
+    Use Enter or Left Ctrl to shift polarities.
 
     Use Tab to respawn player.'
 --- !u!222 &587545876
