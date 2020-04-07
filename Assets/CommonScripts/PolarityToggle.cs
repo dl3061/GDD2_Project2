@@ -25,6 +25,14 @@ public class PolarityToggle : MonoBehaviour
     [SerializeField]
     protected Polarity currentPolarity;
 
+    public Polarity CurrentPolarity
+    {
+        get
+        {
+            return currentPolarity;
+        }
+    }
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>

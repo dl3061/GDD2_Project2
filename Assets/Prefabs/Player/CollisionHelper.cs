@@ -79,7 +79,7 @@ public class CollisionHelper : MonoBehaviour {
             isTouchingGroundDark |= Physics.Raycast(colPosition, Vector3.down, distance, darkMask);
         }
 
-        isTouchingGround = isTouchingGroundLight || isTouchingGroundDark;
+        isTouchingGround = (isTouchingGroundLight && GetComponent<PlayerPolarity>().CurrentPolarity == Polarity.Light) || (isTouchingGroundDark && GetComponent<PlayerPolarity>().CurrentPolarity == Polarity.Dark);
     }
 
 

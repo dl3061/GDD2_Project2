@@ -111,7 +111,7 @@ public class PlayerPolarity : PolarityToggle
     {
         if (isTransitioning == false)
         {
-            base.TogglePolarity();
+            base.   TogglePolarity();
 
             shiftTimer = 0f;
             isTransitioning = true;

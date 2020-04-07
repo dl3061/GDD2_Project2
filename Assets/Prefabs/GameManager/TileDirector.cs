@@ -10,6 +10,8 @@ public class TileDirector : MonoBehaviour
     List<GameObject> tiles;
     [SerializeField]
     Formation currentFormation;
+    [SerializeField]
+    Formation starter;
     Object[] formations;
 
 
@@ -22,7 +24,7 @@ public class TileDirector : MonoBehaviour
 
     private void Start()
     {
-        formations = Resources.LoadAll("Formations",typeof(Formation));
+        formations = Resources.LoadAll("Formations/base",typeof(Formation));
 
         formationDistanceTravelled = 0f;
         formationDistanceToNext = 0f;
@@ -65,19 +67,24 @@ public class TileDirector : MonoBehaviour
         {
             //2.68 base
             //As scroll speed is multiplied by x, delay is divided by x
-            
-            
+
             foreach (Formation.formationDetail f in currentFormation.formationDetails)
             {
                 GameObject tile = getReadyTile();
                 tile.transform.position = f.formationPositionDetails;
                 tile.transform.localScale = f.formationScaleDetails;
-                tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarities[Random.Range(0,f.polarities.Count)];
+                tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarities[Random.Range(0, f.polarities.Count)];
                 tile.GetComponent<PolarityToggle>().ResetEvent();
                 tile.SetActive(true);
             }
 
-            currentFormation = (Formation) formations[Random.Range(0, formations.Length)];
+            if (GetComponent<GameManager>().ActivePlayer.transform.position.y > 5)
+            {
+                currentFormation = starter;
+            } else
+            {
+                currentFormation = (Formation)formations[Random.Range(0, formations.Length)];
+            }
 
             formationDistanceTravelled = 0f;
             formationDistanceToNext = currentFormation.GetLength();
