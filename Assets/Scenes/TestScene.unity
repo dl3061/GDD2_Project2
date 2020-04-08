@@ -354,7 +354,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -803,7 +803,17 @@ PrefabInstance:
     - target: {fileID: 9052461993169346283, guid: 62020e1ee3298bf42aa7d25a83bff8b3,
         type: 3}
       propertyPath: jumpLimit
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9052461993169346283, guid: 62020e1ee3298bf42aa7d25a83bff8b3,
+        type: 3}
+      propertyPath: jumpInitialForce
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9052461993169346283, guid: 62020e1ee3298bf42aa7d25a83bff8b3,
+        type: 3}
+      propertyPath: gravityScale
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62020e1ee3298bf42aa7d25a83bff8b3, type: 3}

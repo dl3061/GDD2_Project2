@@ -9,16 +9,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: ff7fe16c597936b45bc1324becd707ec, type: 3}
   m_Name: Formation1
-  m_EditorClassIdentifier: Assembly-CSharp::Formation
+  m_EditorClassIdentifier: 
+  randomizeLanes: 1
   formationDetails:
-  - polarities: 010000000200000000000000
-    formationScaleDetails: {x: 2, y: 1, z: 3}
-    formationPositionDetails: {x: -2, y: 0, z: 0}
-  - polarities: 010000000200000000000000
-    formationScaleDetails: {x: 2, y: 1, z: 3}
-    formationPositionDetails: {x: 0, y: 0, z: 0}
-  - polarities: 010000000200000000000000
-    formationScaleDetails: {x: 2, y: 1, z: 3}
-    formationPositionDetails: {x: 2, y: 0, z: 0}
+  - polarities: 0200000001000000
+    formationScaleDetails: {x: 2, y: 1, z: 24}
+    formationPositionDetails: {x: 0, y: 0, z: 12}
+    syncPolarity: 0
+    copyIndex: 0
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 2}
+    formationPositionDetails: {x: -2, y: 0, z: 1}
+    syncPolarity: -1
+    copyIndex: 0
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 2}
+    formationPositionDetails: {x: -2, y: 0, z: 7}
+    syncPolarity: 1
+    copyIndex: 1
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 2}
+    formationPositionDetails: {x: -2, y: 0, z: 13}
+    syncPolarity: 1
+    copyIndex: 1
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 2}
+    formationPositionDetails: {x: -2, y: 0, z: 19}
+    syncPolarity: 1
+    copyIndex: 1
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 2}
+    formationPositionDetails: {x: -2, y: 0, z: 23}
+    syncPolarity: 1
+    copyIndex: 1

@@ -12,7 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7fe16c597936b45bc1324becd707ec, type: 3}
   m_Name: Formation3
   m_EditorClassIdentifier: 
+  randomizeLanes: 1
   formationDetails:
   - polarities: 0100000002000000
-    formationScaleDetails: {x: 2, y: 1, z: 3}
-    formationPositionDetails: {x: 0, y: 0, z: 0}
+    formationScaleDetails: {x: 2, y: 1, z: 8}
+    formationPositionDetails: {x: -2, y: 0, z: 4}
+    syncPolarity: 0
+    copyIndex: 0
+  - polarities: 0100000002000000
+    formationScaleDetails: {x: 2, y: 1, z: 8}
+    formationPositionDetails: {x: 0, y: 0, z: 8}
+    syncPolarity: 1
+    copyIndex: 0
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 12}
+    formationPositionDetails: {x: 2, y: 0, z: 6}
+    syncPolarity: -1
+    copyIndex: 0
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 4}
+    formationPositionDetails: {x: -2, y: 0, z: 10}
+    syncPolarity: -1
+    copyIndex: 0
+  - polarities: 
+    formationScaleDetails: {x: 2, y: 1, z: 4}
+    formationPositionDetails: {x: 0, y: 0, z: 2}
+    syncPolarity: -1
+    copyIndex: 0

@@ -11,7 +11,12 @@ public class Formation : ScriptableObject
         public List<Polarity> polarities;
         public Vector3 formationScaleDetails;
         public Vector3 formationPositionDetails;
+        public int syncPolarity;
+        public int copyIndex;
     }
+
+    public bool randomizeLanes;
+    
 
     public List<formationDetail> formationDetails;
 
