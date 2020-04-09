@@ -15,32 +15,22 @@ MonoBehaviour:
   randomizeLanes: 1
   formationDetails:
   - polarities: 0200000001000000
-    formationScaleDetails: {x: 2, y: 1, z: 24}
-    formationPositionDetails: {x: 0, y: 0, z: 12}
+    formationScaleDetails: {x: 2, y: 1, z: 20}
+    formationPositionDetails: {x: 0, y: 0, z: 10}
     syncPolarity: 0
     copyIndex: 0
   - polarities: 
-    formationScaleDetails: {x: 2, y: 1, z: 2}
-    formationPositionDetails: {x: -2, y: 0, z: 1}
+    formationScaleDetails: {x: 2, y: 1, z: 4}
+    formationPositionDetails: {x: -2, y: 0, z: 2}
     syncPolarity: -1
     copyIndex: 0
   - polarities: 
-    formationScaleDetails: {x: 2, y: 1, z: 2}
-    formationPositionDetails: {x: -2, y: 0, z: 7}
+    formationScaleDetails: {x: 2, y: 1, z: 4}
+    formationPositionDetails: {x: -2, y: 0, z: 10}
     syncPolarity: 1
     copyIndex: 1
   - polarities: 
-    formationScaleDetails: {x: 2, y: 1, z: 2}
-    formationPositionDetails: {x: -2, y: 0, z: 13}
-    syncPolarity: 1
-    copyIndex: 1
-  - polarities: 
-    formationScaleDetails: {x: 2, y: 1, z: 2}
-    formationPositionDetails: {x: -2, y: 0, z: 19}
-    syncPolarity: 1
-    copyIndex: 1
-  - polarities: 
-    formationScaleDetails: {x: 2, y: 1, z: 2}
-    formationPositionDetails: {x: -2, y: 0, z: 23}
+    formationScaleDetails: {x: 2, y: 1, z: 4}
+    formationPositionDetails: {x: -2, y: 0, z: 18}
     syncPolarity: 1
     copyIndex: 1
