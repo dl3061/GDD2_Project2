@@ -106,7 +106,8 @@ public class TileDirector : MonoBehaviour
                                 tile.GetComponent<PolarityToggle>().defaultPolarity = Polarity.Light;
                             } else
                             {
-                                tile.GetComponent<PolarityToggle>().defaultPolarity = Polarity.Neutral;
+                                Polarity[] p = new Polarity[2] { Polarity.Light, Polarity.Dark };
+                                tile.GetComponent<PolarityToggle>().defaultPolarity = p[Random.Range(0, 2)];
                             }              
                             break;
                     }
