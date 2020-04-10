@@ -58,6 +58,10 @@ public class GameManager : MonoBehaviour
 
     public Text gameOverText;
 
+    // Score system- based on time
+    public Text scoreText;
+    private float startTime;
+
     [Header("Serialized Fields")]
 
     // The current scroll speed
@@ -92,6 +96,8 @@ public class GameManager : MonoBehaviour
         currScrollSpeed = defaultScrollSpeed;
 
         midtoggleDelayTimer = 0f;
+
+        startTime = Time.time;
     }
 
 
@@ -102,11 +108,17 @@ public class GameManager : MonoBehaviour
     {
         // Check for events
 
+        // Score system- based on time
+        float t = Time.time - startTime;
+        string seconds = (t % 60).ToString("f2");
+        scoreText.text = "Score: " + seconds;
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (ResetEvent != null)
             {
                 ResetEvent.Raise();
+                startTime = Time.time;
             }
         }
 
