@@ -110,7 +110,9 @@ public class GameManager : MonoBehaviour
 
         // Score system- based on time
         float t = Time.time - startTime;
-        string seconds = (t % 60).ToString("f2");
+        string seconds = (t % 60).ToString("F2");
+
+        // Debug.Log("t: " + t + " seconds: " + seconds);
 
         if (scoreText != null)
             scoreText.text = "Score: " + seconds;
@@ -170,7 +172,7 @@ public class GameManager : MonoBehaviour
     {
         if(ActivePlayer.transform.position.y < -6.0f)
         {
-            Debug.Log("Game Over");
+            // Debug.Log("Game Over");
 
             Time.timeScale = 0.0f;
 
