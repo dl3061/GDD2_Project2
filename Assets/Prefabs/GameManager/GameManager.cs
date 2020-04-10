@@ -111,7 +111,9 @@ public class GameManager : MonoBehaviour
         // Score system- based on time
         float t = Time.time - startTime;
         string seconds = (t % 60).ToString("f2");
-        scoreText.text = "Score: " + seconds;
+
+        if (scoreText != null)
+            scoreText.text = "Score: " + seconds;
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
