@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float currScrollSpeed = 0f;
 
+    private float speedIncreaseTimer = 6f;
+
+    private float speedIncreaseDelay = 8f;
+
+    private float speedIncreaseAmount = 0.65f;
 
 
     /// <summary>
@@ -134,6 +139,7 @@ public class GameManager : MonoBehaviour
 
 
         // Control the scroll speed
+        /*
         if (midtoggleDelayTimer > 0f)
         {
             currScrollSpeed = midtoggleScrollSpeed;
@@ -155,7 +161,12 @@ public class GameManager : MonoBehaviour
                 currScrollSpeed = defaultScrollSpeed;
             }
         }
-
+        */
+        if(speedIncreaseTimer < Time.timeSinceLevelLoad)
+        {
+            currScrollSpeed -= speedIncreaseAmount;
+            speedIncreaseTimer = Time.timeSinceLevelLoad + speedIncreaseDelay;
+        }
         CheckDeath();
     }
 
