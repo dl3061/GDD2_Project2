@@ -112,8 +112,6 @@ public class GameManager : MonoBehaviour
         float t = Time.time - startTime;
         string seconds = (t % 60).ToString("F2");
 
-        // Debug.Log("t: " + t + " seconds: " + seconds);
-
         if (scoreText != null)
             scoreText.text = "Score: " + seconds;
 
@@ -122,7 +120,6 @@ public class GameManager : MonoBehaviour
             if (ResetEvent != null)
             {
                 ResetEvent.Raise();
-                startTime = Time.time;
             }
         }
 
@@ -198,6 +195,9 @@ public class GameManager : MonoBehaviour
 
         // Reset timers
         midtoggleDelayTimer = 0f;
+
+        // Reset score
+        startTime = Time.time;
 
         // Unpause if necessary
         Time.timeScale = 1.0f;
