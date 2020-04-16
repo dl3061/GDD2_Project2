@@ -722,28 +722,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 774125512180680702, guid: 287814835dfd31a418d48a4b048be95d,
-        type: 3}
-      propertyPath: starter
-      value: 
-      objectReference: {fileID: 11400000, guid: 25b4d6bd5bbf6ac45bcc9e4b01636af0,
-        type: 2}
-    - target: {fileID: 774125512180680702, guid: 287814835dfd31a418d48a4b048be95d,
-        type: 3}
-      propertyPath: currentFormation
-      value: 
-      objectReference: {fileID: 11400000, guid: 25b4d6bd5bbf6ac45bcc9e4b01636af0,
-        type: 2}
     - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
         type: 3}
       propertyPath: ActivePlayer
       value: 
       objectReference: {fileID: 5541579336659216554}
-    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
-        type: 3}
-      propertyPath: midtoggleDelayTime
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
         type: 3}
       propertyPath: gameOverText

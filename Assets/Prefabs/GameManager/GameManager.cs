@@ -53,12 +53,18 @@ public class GameManager : MonoBehaviour
     [Tooltip("The event to throw ")]
     public GameEvent PauseEvent;
 
+    [Tooltip("The event to throw ")]
+    public GameEvent UnpauseEvent;
+
     [Tooltip("The event to throw when toggling polarity")]
     public GameEvent TogglePolarityEvent;
 
+    [Header("Text")]
+
+    [Tooltip("The Game Over text to display")]
     public Text gameOverText;
 
-    // Score system- based on time
+    [Tooltip("The Score text to display. Score system- based on time")]
     public Text scoreText;
     private float startTime;
 
@@ -67,6 +73,8 @@ public class GameManager : MonoBehaviour
     // The current scroll speed
     [SerializeField]
     private float currScrollSpeed = 0f;
+
+    private bool gamePaused = false;
 
 
 
@@ -95,9 +103,14 @@ public class GameManager : MonoBehaviour
         // Initialize scroll speed to current scroll speed.
         currScrollSpeed = defaultScrollSpeed;
 
+        // Init timers
         midtoggleDelayTimer = 0f;
 
+        // Init start time
         startTime = Time.time;
+
+        // Init flags
+        gamePaused = false;
     }
 
 
@@ -127,6 +140,20 @@ public class GameManager : MonoBehaviour
         {
             if (TogglePolarityEvent != null)
                 TogglePolarityEvent.Raise();
+        }
+
+        if (InputManager.Singleton.GetPauseDown())
+        {
+            if (gamePaused)
+            {
+                if (UnpauseEvent != null)
+                    UnpauseEvent.Raise();
+            }
+            else
+            {
+                if (PauseEvent != null)
+                    PauseEvent.Raise();
+            }
         }
 
 
@@ -212,6 +239,7 @@ public class GameManager : MonoBehaviour
     public void PauseEventHandler()
     {
         // Pause
+        gamePaused = true;
         Time.timeScale = 0f;
     }
 
@@ -219,6 +247,7 @@ public class GameManager : MonoBehaviour
     public void UnpauseEventHandler()
     {
         // Unpause
+        gamePaused = false;
         Time.timeScale = 1f;
     }
 
