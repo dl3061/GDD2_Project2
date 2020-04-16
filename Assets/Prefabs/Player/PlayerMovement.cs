@@ -60,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private int lanePosition;
     private float laneWidth;
+    Collider col;
+    
 
     private void Awake()
     {
@@ -70,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        col = GetComponent<Collider>();
         // Determine the init position
         initPosition = transform.position;
 
@@ -187,6 +190,21 @@ public class PlayerMovement : MonoBehaviour
             if (isValidMove)
             {
                 lanePosition = nextLanePosition;
+            }
+        }
+        
+        //Die when hitting a wall
+        RaycastHit ray;
+        bool HitDetect = Physics.BoxCast(transform.position, new Vector3(0.2f,0.5f,0.1f), new Vector3(0, 0, 1), out ray, transform.rotation,0.1f);
+        if (HitDetect)
+        {
+            GameObject g = ray.collider.gameObject.transform.parent.gameObject;
+            if (g.GetComponent<PolarityToggle>())
+            {
+                if (g.GetComponent<PolarityToggle>().CurrentPolarity == GetComponent<PolarityToggle>().CurrentPolarity)
+                {
+                    GameManager.Singleton.playerDead = true;
+                }
             }
         }
 

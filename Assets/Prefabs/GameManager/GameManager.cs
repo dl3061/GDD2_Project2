@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("The Player itself, so other scripts can reference it statically")]
     public GameObject ActivePlayer;
+    public bool playerDead;
 
     [Header("Game Speed Control")]
 
@@ -67,10 +68,15 @@ public class GameManager : MonoBehaviour
     [Tooltip("The Score text to display. Score system- based on time")]
     public Text scoreText;
     public Text multiplerText;
+
     private float scoreMultiplier;
     private float score;
 
     private float scoreTimer;
+
+    [Tooltip("The time of session to display")]
+    public Text TimerText;
+
 
     [Header("Serialized Fields")]
 
@@ -141,6 +147,7 @@ public class GameManager : MonoBehaviour
             }
 
             // Control the scroll speed
+            /*
             if (midtoggleDelayTimer > 0f)
             {
                 currScrollSpeed = midtoggleScrollSpeed;
@@ -162,6 +169,7 @@ public class GameManager : MonoBehaviour
                     currScrollSpeed = defaultScrollSpeed;
                 }
             }
+            */
 
             // Update score
             scoreTimer += Time.deltaTime;
@@ -174,7 +182,7 @@ public class GameManager : MonoBehaviour
 
             // Update UI
             if (scoreText != null)
-                scoreText.text = "score: " + score; //scoreText.text = "(x" + scoreMultiplier + ") " + score;
+                scoreText.text = "Score: " + score; //scoreText.text = "(x" + scoreMultiplier + ") " + score;
 
             if (multiplerText != null)
                 multiplerText.text = "Bonus Multiplier: x" + scoreMultiplier;
@@ -221,17 +229,6 @@ public class GameManager : MonoBehaviour
                 TogglePolarityEvent.Raise();
         }
 
-
-        // Control the scroll speed
-        /*
-        if (midtoggleDelayTimer > 0f)
-        {
-            currScrollSpeed = midtoggleScrollSpeed;
-
-            midtoggleDelayTimer -= Time.deltaTime;
-        }
-        else
-        */
         if (InputManager.Singleton.GetPauseDown())
         {
             if (gamePaused)
@@ -245,9 +242,15 @@ public class GameManager : MonoBehaviour
                     PauseEvent.Raise();
             }
         }
+
+        //Update Timer
+        TimerText.text = "Time: " + Mathf.Round(Time.timeSinceLevelLoad);
+
+        //Increase speed over time
         if(speedIncreaseTimer < Time.timeSinceLevelLoad)
         {
             currScrollSpeed -= speedIncreaseAmount;
+            ActivePlayer.GetComponent<PlayerMovement>().gravityScale += 0.225f;
             speedIncreaseTimer = Time.timeSinceLevelLoad + speedIncreaseDelay;
         }
         CheckDeath();
@@ -264,7 +267,7 @@ public class GameManager : MonoBehaviour
 
     private bool CheckDeath()
     {
-        return (ActivePlayer.transform.position.y < -6.0f) ;
+        return (ActivePlayer.transform.position.y < -6.0f || playerDead) ;
     }
 
     /// <summary>
