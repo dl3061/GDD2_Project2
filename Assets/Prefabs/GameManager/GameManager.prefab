@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 774125512180680702}
   - component: {fileID: 5410024830109185540}
   - component: {fileID: 2564989640299362305}
+  - component: {fileID: 4033571743794604786}
   - component: {fileID: 676418460235191091}
   m_Layer: 0
   m_Name: GameManager
@@ -54,13 +55,16 @@ MonoBehaviour:
   slowScrollSpeed: -2
   scrollAcceleration: 1
   midtoggleScrollSpeed: 0.01
-  midtoggleDelayTime: 0.25
+  midtoggleDelayTime: 0
   NumberOfLanes: 3
   LaneWidth: 2
   ResetEvent: {fileID: 11400000, guid: bf36f723a27582744a7532b7f1d4eff6, type: 2}
   PauseEvent: {fileID: 11400000, guid: 0f02899659824624c8bd455a27fd6ed1, type: 2}
+  UnpauseEvent: {fileID: 11400000, guid: 39ce0305710c0d143b3a3178ab441cf4, type: 2}
   TogglePolarityEvent: {fileID: 11400000, guid: 7a98020e9caed864f936237dee02192e,
     type: 2}
+  gameOverText: {fileID: 0}
+  scoreText: {fileID: 0}
   currScrollSpeed: 0
 --- !u!114 &-5057375223356145360
 MonoBehaviour:
@@ -89,7 +93,8 @@ MonoBehaviour:
   tilePrefab: {fileID: 9002088369504968948, guid: dbaa1d6817b72b8468b4986e86cd6823,
     type: 3}
   tiles: []
-  currentFormation: {fileID: 11400000, guid: 4ccbdc081df3e6f46bd95f1243396115, type: 2}
+  currentFormation: {fileID: 11400000, guid: 25b4d6bd5bbf6ac45bcc9e4b01636af0, type: 2}
+  starter: {fileID: 11400000, guid: 25b4d6bd5bbf6ac45bcc9e4b01636af0, type: 2}
 --- !u!114 &5410024830109185540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +140,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1485836623958264608}
         m_MethodName: PauseEventHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4033571743794604786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7924602384570222614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7064a621f7736804e85e47ffdcc73c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 39ce0305710c0d143b3a3178ab441cf4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1485836623958264608}
+        m_MethodName: UnpauseEventHandler
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

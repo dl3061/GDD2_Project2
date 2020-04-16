@@ -53,14 +53,24 @@ public class GameManager : MonoBehaviour
     [Tooltip("The event to throw ")]
     public GameEvent PauseEvent;
 
+    [Tooltip("The event to throw ")]
+    public GameEvent UnpauseEvent;
+
     [Tooltip("The event to throw when toggling polarity")]
     public GameEvent TogglePolarityEvent;
 
-    public Text gameOverText;
+    [Header("Text")]
 
-    // Score system- based on time
+    [Tooltip("The Game Over text to display")]
+    public Text centerText;
+
+    [Tooltip("The Score text to display. Score system- based on time")]
     public Text scoreText;
-    private float startTime;
+    public Text multiplerText;
+    private float scoreMultiplier;
+    private float score;
+
+    private float scoreTimer;
 
     [Header("Serialized Fields")]
 
@@ -73,6 +83,8 @@ public class GameManager : MonoBehaviour
     private float speedIncreaseDelay = 8f;
 
     private float speedIncreaseAmount = 0.65f;
+    private bool gamePaused = false;
+
 
 
     /// <summary>
@@ -100,9 +112,16 @@ public class GameManager : MonoBehaviour
         // Initialize scroll speed to current scroll speed.
         currScrollSpeed = defaultScrollSpeed;
 
+        // Init timers
         midtoggleDelayTimer = 0f;
 
-        startTime = Time.time;
+        // Init start time
+        scoreTimer = 0f;
+        score = 0f;
+        scoreMultiplier = 1f;
+
+        // Init flags
+        gamePaused = false;
     }
 
 
@@ -111,23 +130,88 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (!gamePaused)
+        {
+            if (CheckDeath())
+            {
+                // Debug.Log("Game Over");
+                Time.timeScale = 0.0f;
+                gamePaused = true;
+                scoreMultiplier = 0f;
+            }
+
+            // Control the scroll speed
+            if (midtoggleDelayTimer > 0f)
+            {
+                currScrollSpeed = midtoggleScrollSpeed;
+
+                midtoggleDelayTimer -= Time.deltaTime;
+            }
+            else
+            {
+                if (InputManager.Singleton.GetSpeedIncrease())
+                {
+                    currScrollSpeed = fastScrollSpeed;
+                }
+                else if (InputManager.Singleton.GetSpeedDecrease())
+                {
+                    currScrollSpeed = slowScrollSpeed;
+                }
+                else
+                {
+                    currScrollSpeed = defaultScrollSpeed;
+                }
+            }
+
+            // Update score
+            scoreTimer += Time.deltaTime;
+            if (scoreTimer > 1f)
+            {
+                scoreTimer -= 1f;
+                score += 1.0f * scoreMultiplier;
+                scoreMultiplier += .1f;
+            }
+
+            // Update UI
+            if (scoreText != null)
+                scoreText.text = "score: " + score; //scoreText.text = "(x" + scoreMultiplier + ") " + score;
+
+            if (multiplerText != null)
+                multiplerText.text = "Bonus Multiplier: x" + scoreMultiplier;
+
+            if (centerText != null)
+            {
+                if (CheckDeath())
+                    centerText.text = "You Died!";
+                else
+                    centerText.text = "";
+            }
+        }
+        else
+        {
+            // If paused, hide UI
+            if (scoreText != null)
+                scoreText.text = "";
+
+            if (multiplerText != null)
+                multiplerText.text = "";
+
+            if (centerText != null)
+            {
+                if (CheckDeath())
+                    centerText.text = "You Died!";
+                else
+                    centerText.text = "Paused";
+            }
+        }
+
+
         // Check for events
-
-        // Score system- based on time
-        float t = Time.time - startTime;
-        string seconds = (t % 60).ToString("F2");
-
-        // Debug.Log("t: " + t + " seconds: " + seconds);
-
-        if (scoreText != null)
-            scoreText.text = "Score: " + seconds;
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (ResetEvent != null)
             {
                 ResetEvent.Raise();
-                startTime = Time.time;
             }
         }
 
@@ -147,21 +231,20 @@ public class GameManager : MonoBehaviour
             midtoggleDelayTimer -= Time.deltaTime;
         }
         else
+        */
+        if (InputManager.Singleton.GetPauseDown())
         {
-            if (InputManager.Singleton.GetSpeedIncrease())
+            if (gamePaused)
             {
-                currScrollSpeed = fastScrollSpeed;
-            }
-            else if (InputManager.Singleton.GetSpeedDecrease())
-            {
-                currScrollSpeed = slowScrollSpeed;
+                if (UnpauseEvent != null)
+                    UnpauseEvent.Raise();
             }
             else
             {
-                currScrollSpeed = defaultScrollSpeed;
+                if (PauseEvent != null)
+                    PauseEvent.Raise();
             }
         }
-        */
         if(speedIncreaseTimer < Time.timeSinceLevelLoad)
         {
             currScrollSpeed -= speedIncreaseAmount;
@@ -179,17 +262,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void CheckDeath()
+    private bool CheckDeath()
     {
-        if(ActivePlayer.transform.position.y < -6.0f)
-        {
-            // Debug.Log("Game Over");
-
-            Time.timeScale = 0.0f;
-
-            if (gameOverText != null)
-                gameOverText.text = "You Died!";
-        }
+        return (ActivePlayer.transform.position.y < -6.0f) ;
     }
 
     /// <summary>
@@ -210,11 +285,17 @@ public class GameManager : MonoBehaviour
         // Reset timers
         midtoggleDelayTimer = 0f;
 
+        // Reset score
+        scoreTimer = 0f;
+        score = 0f;
+        scoreMultiplier = 1f;
+
         // Unpause if necessary
         Time.timeScale = 1.0f;
+        gamePaused = false;
 
-        if (gameOverText != null)
-            gameOverText.text = "";
+        if (centerText != null)
+            centerText.text = "";
 
         SceneManager.LoadScene("TestScene");
     }
@@ -223,6 +304,7 @@ public class GameManager : MonoBehaviour
     public void PauseEventHandler()
     {
         // Pause
+        gamePaused = true;
         Time.timeScale = 0f;
     }
 
@@ -230,12 +312,14 @@ public class GameManager : MonoBehaviour
     public void UnpauseEventHandler()
     {
         // Unpause
+        gamePaused = false;
         Time.timeScale = 1f;
     }
 
 
     public void TogglePolarityEventHandler()
     {
+        scoreMultiplier = 1f;
         midtoggleDelayTimer = midtoggleDelayTime;
     }
 }
