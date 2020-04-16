@@ -195,16 +195,20 @@ public class PlayerMovement : MonoBehaviour
         
         //Die when hitting a wall
         RaycastHit ray;
-        bool HitDetect = Physics.BoxCast(transform.position, new Vector3(0.2f,0.5f,0.1f), new Vector3(0, 0, 1), out ray, transform.rotation,0.1f);
+        bool HitDetect = Physics.BoxCast(transform.position, new Vector3(0.2f,0.2f,0.1f), new Vector3(0, 0, 1), out ray, transform.rotation,0.1f);
         if (HitDetect)
         {
             GameObject g = ray.collider.gameObject.transform.parent.gameObject;
             if (g.GetComponent<PolarityToggle>())
             {
-                if (g.GetComponent<PolarityToggle>().CurrentPolarity == GetComponent<PolarityToggle>().CurrentPolarity)
+                
+                if (g.GetComponent<PolarityToggle>().CurrentPolarity == GetComponent<PolarityToggle>().CurrentPolarity || g.GetComponent<PolarityToggle>().CurrentPolarity == Polarity.Neutral)
                 {
                     GameManager.Singleton.playerDead = true;
                 }
+            } else if(g.name == "NeutralTile")
+            {
+                GameManager.Singleton.playerDead = true;
             }
         }
 
