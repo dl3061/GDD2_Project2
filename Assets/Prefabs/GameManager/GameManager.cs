@@ -198,11 +198,6 @@ public class GameManager : MonoBehaviour
         else
         {
             // If paused, hide UI
-            if (scoreText != null)
-                scoreText.text = "";
-
-            if (multiplerText != null)
-                multiplerText.text = "";
 
             if (centerText != null)
             {
