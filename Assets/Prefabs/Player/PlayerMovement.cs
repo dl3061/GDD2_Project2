@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     // The initial '0' position of the player
     private Vector3 initPosition;
 
+    [Tooltip("Animator")]
+    public Animator animator;
+
     [Tooltip("Gravity Scale")]
     public float gravityScale = 1f;
     const float gravity = -9.81f;
@@ -217,10 +220,12 @@ public class PlayerMovement : MonoBehaviour
             Vector2 jumpForce = Vector2.zero;
             if (input.GetJump())
             {
+                animator.SetBool("inAir", true);
                 if (jumpCount < jumpLimit)
                 {
                     if (input.GetJumpDown())
                     {
+                        
                         // Set player state flags
                         isWaiting = false;
 
@@ -250,6 +255,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (collisionHelper.IsTouchingGround())
+            if (animator.GetBool("inAir"))
+            {
+                animator.SetBool("inAir", false);
+            }
             jumpCount = 0;
     }
 
