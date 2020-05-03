@@ -197,23 +197,40 @@ public class PlayerMovement : MonoBehaviour
         }
         
         //Die when hitting a wall
+        //NEED TO ADD A CASE FOR POWERUP COLLISIONS
         RaycastHit ray;
         bool HitDetect = Physics.BoxCast(transform.position, new Vector3(0.2f,0.2f,0.1f), new Vector3(0, 0, 1), out ray, transform.rotation,0.1f);
         if (HitDetect)
         {
-            GameObject g = ray.collider.gameObject.transform.parent.gameObject;
 
-            if (g.GetComponent<PolarityToggle>())
+            //dont check polarity of sphere
+            if(ray.collider.gameObject.name != "Sphere(Clone)")
             {
-                
-                if (g.GetComponent<PolarityToggle>().CurrentPolarity != GetComponent<PolarityToggle>().CurrentPolarity || g.GetComponent<PolarityToggle>().CurrentPolarity == Polarity.Neutral)
+                GameObject g = ray.collider.gameObject.transform.parent.gameObject;
+
+                if (g.GetComponent<PolarityToggle>())
+                {
+
+                    if (g.GetComponent<PolarityToggle>().CurrentPolarity != GetComponent<PolarityToggle>().CurrentPolarity || g.GetComponent<PolarityToggle>().CurrentPolarity == Polarity.Neutral)
+                    {
+                        GameManager.Singleton.playerDead = true;
+                    }
+                }
+                else if (g.name == "NeutralTile")
                 {
                     GameManager.Singleton.playerDead = true;
                 }
-            } else if(g.name == "NeutralTile")
-            {
-                GameManager.Singleton.playerDead = true;
             }
+            else
+            {
+                //disable power up
+                ray.collider.gameObject.SetActive(false);
+
+                //do power up stuff
+                Debug.Log("Power Up Collected");
+            }
+
+
         }
 
         // Check for jump
