@@ -966,6 +966,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 774125512180680702, guid: 287814835dfd31a418d48a4b048be95d,
+        type: 3}
+      propertyPath: powerupPrefab
+      value: 
+      objectReference: {fileID: 6658903273998017190, guid: 425db8e3c1c5dfe45aeff6127e1acfbd,
+        type: 3}
     - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
         type: 3}
       propertyPath: ActivePlayer

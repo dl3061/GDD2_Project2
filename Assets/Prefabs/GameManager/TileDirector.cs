@@ -5,6 +5,11 @@ using UnityEngine;
 public class TileDirector : MonoBehaviour
 {
     [SerializeField]
+    GameObject powerupPrefab;
+
+    private GameObject powerup;
+
+    [SerializeField]
     GameObject tilePrefab;
     [SerializeField]
     List<GameObject> tiles;
@@ -14,7 +19,8 @@ public class TileDirector : MonoBehaviour
     Formation starter;
     Object[] formations;
 
-
+    private float powerUpTimer = 10;
+    private float powerUPDelay = 10;
     private float formationDistanceTravelled;
 
     private float formationDistanceToNext;
@@ -24,10 +30,13 @@ public class TileDirector : MonoBehaviour
 
     private void Start()
     {
-        formations = Resources.LoadAll("Formations/base",typeof(Formation));
+        formations = Resources.LoadAll("Formations/base", typeof(Formation));
 
         formationDistanceTravelled = 0f;
         formationDistanceToNext = 0f;
+
+        powerup = Instantiate(powerupPrefab);
+        powerup.SetActive(false);
     }
 
     GameObject getReadyTile()
@@ -119,6 +128,15 @@ public class TileDirector : MonoBehaviour
                 polarityIndexes.Add(tile.GetComponent<PolarityToggle>().defaultPolarity);
                 tile.GetComponent<PolarityToggle>().ResetEvent();
                 tile.SetActive(true);
+                if(powerUpTimer < Time.timeSinceLevelLoad)
+                {
+                    if(tile.GetComponent<PolarityToggle>().defaultPolarity != GetComponent<GameManager>().ActivePlayer.GetComponent<PlayerPolarity>().CurrentPolarity)
+                    {
+                        powerUpTimer = Time.timeSinceLevelLoad + powerUPDelay;
+                        powerup.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y+2, tile.transform.position.z);
+                        powerup.SetActive(true);
+                    }
+                }
             }
 
             formationDistanceToNext = currentFormation.GetLength();
