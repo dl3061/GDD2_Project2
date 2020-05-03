@@ -202,10 +202,11 @@ public class PlayerMovement : MonoBehaviour
         if (HitDetect)
         {
             GameObject g = ray.collider.gameObject.transform.parent.gameObject;
+
             if (g.GetComponent<PolarityToggle>())
             {
                 
-                if (g.GetComponent<PolarityToggle>().CurrentPolarity == GetComponent<PolarityToggle>().CurrentPolarity || g.GetComponent<PolarityToggle>().CurrentPolarity == Polarity.Neutral)
+                if (g.GetComponent<PolarityToggle>().CurrentPolarity != GetComponent<PolarityToggle>().CurrentPolarity || g.GetComponent<PolarityToggle>().CurrentPolarity == Polarity.Neutral)
                 {
                     GameManager.Singleton.playerDead = true;
                 }
