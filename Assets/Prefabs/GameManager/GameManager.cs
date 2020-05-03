@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     public Text multiplerText;
 
     private float scoreMultiplier;
-    private float score;
+    public int score;
 
     private float scoreTimer;
 
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
 
         // Init start time
         scoreTimer = 0f;
-        score = 0f;
+        score = 0;
         scoreMultiplier = 1f;
 
         // Init flags
@@ -176,13 +176,20 @@ public class GameManager : MonoBehaviour
             if (scoreTimer > 1f)
             {
                 scoreTimer -= 1f;
-                score += 1.0f * scoreMultiplier;
-                scoreMultiplier += .1f;
+                if (scoreMultiplier < 5) { 
+                    scoreMultiplier += .1f;
+                    if (scoreMultiplier >= 5)
+                    {
+                        scoreMultiplier = 5;
+                    }
+                }
+                score += (int)Mathf.Ceil(10 * scoreMultiplier);
             }
+
 
             // Update UI
             if (scoreText != null)
-                scoreText.text = "Score: " + score; //scoreText.text = "(x" + scoreMultiplier + ") " + score;
+                scoreText.text = "Score: " + Mathf.Ceil(score); //scoreText.text = "(x" + scoreMultiplier + ") " + score;
 
             if (multiplerText != null)
                 multiplerText.text = "Bonus Multiplier: x" + scoreMultiplier;
@@ -245,6 +252,7 @@ public class GameManager : MonoBehaviour
         if(speedIncreaseTimer < Time.timeSinceLevelLoad)
         {
             currScrollSpeed -= speedIncreaseAmount;
+            ActivePlayer.GetComponent<PlayerMovement>().animator.speed += speedIncreaseAmount / 20;
             ActivePlayer.GetComponent<PlayerMovement>().gravityScale += 0.225f;
             speedIncreaseTimer = Time.timeSinceLevelLoad + speedIncreaseDelay;
         }
@@ -285,7 +293,7 @@ public class GameManager : MonoBehaviour
 
         // Reset score
         scoreTimer = 0f;
-        score = 0f;
+        score = 0;
         scoreMultiplier = 1f;
 
         // Unpause if necessary

@@ -121,8 +121,8 @@ public class TileDirector : MonoBehaviour
                             break;
                     }
                     
-                } else
-                {
+                } else { 
+                 
                     tile.GetComponent<PolarityToggle>().defaultPolarity = f.polarities[Random.Range(0, f.polarities.Count)];
                 }
                 polarityIndexes.Add(tile.GetComponent<PolarityToggle>().defaultPolarity);
@@ -130,7 +130,7 @@ public class TileDirector : MonoBehaviour
                 tile.SetActive(true);
                 if(powerUpTimer < Time.timeSinceLevelLoad)
                 {
-                    if(tile.GetComponent<PolarityToggle>().defaultPolarity != GetComponent<GameManager>().ActivePlayer.GetComponent<PlayerPolarity>().CurrentPolarity)
+                    if(tile.transform.localScale.y <= 2 && tile.GetComponent<PolarityToggle>().defaultPolarity != Polarity.Neutral && tile.GetComponent<PolarityToggle>().defaultPolarity != GetComponent<GameManager>().ActivePlayer.GetComponent<PlayerPolarity>().CurrentPolarity)
                     {
                         powerUpTimer = Time.timeSinceLevelLoad + powerUPDelay;
                         powerup.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y+2, tile.transform.position.z);
@@ -138,7 +138,7 @@ public class TileDirector : MonoBehaviour
                     }
                 }
             }
-
+            Debug.Log(currentFormation);
             formationDistanceToNext = currentFormation.GetLength();
             if (GetComponent<GameManager>().ActivePlayer.transform.position.y > 5)
             {

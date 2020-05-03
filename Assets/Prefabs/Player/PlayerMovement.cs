@@ -71,8 +71,18 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody>();
         collisionHelper = GetComponent<CollisionHelper>();
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Sphere(Clone)")
+        {
+            //disable power up
+            collision.gameObject.SetActive(false);
 
-
+            //do power up stuff
+            GameManager.Singleton.score += 500;
+            Debug.Log("Power Up Collected");
+        }
+    }   
     void Start()
     {
         col = GetComponent<Collider>();
@@ -105,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Update()
     {
+        
         // Apply gravity
         if (transform.position.y >= -5f)
             body.AddForce(gravity * gravityScale * Vector3.up, ForceMode.Acceleration);
@@ -202,35 +213,20 @@ public class PlayerMovement : MonoBehaviour
         bool HitDetect = Physics.BoxCast(transform.position, new Vector3(0.2f,0.2f,0.1f), new Vector3(0, 0, 1), out ray, transform.rotation,0.1f);
         if (HitDetect)
         {
+            GameObject g = ray.collider.gameObject.transform.parent.gameObject;
 
-            //dont check polarity of sphere
-            if(ray.collider.gameObject.name != "Sphere(Clone)")
+            if (g.GetComponent<PolarityToggle>())
             {
-                GameObject g = ray.collider.gameObject.transform.parent.gameObject;
 
-                if (g.GetComponent<PolarityToggle>())
-                {
-
-                    if (g.GetComponent<PolarityToggle>().CurrentPolarity != GetComponent<PolarityToggle>().CurrentPolarity || g.GetComponent<PolarityToggle>().CurrentPolarity == Polarity.Neutral)
-                    {
-                        GameManager.Singleton.playerDead = true;
-                    }
-                }
-                else if (g.name == "NeutralTile")
+                if (g.GetComponent<PolarityToggle>().CurrentPolarity == GetComponent<PolarityToggle>().CurrentPolarity || g.GetComponent<PolarityToggle>().CurrentPolarity == Polarity.Neutral)
                 {
                     GameManager.Singleton.playerDead = true;
                 }
             }
-            else
+            else if (g.name == "NeutralTile")
             {
-                //disable power up
-                ray.collider.gameObject.SetActive(false);
-
-                //do power up stuff
-                Debug.Log("Power Up Collected");
+                GameManager.Singleton.playerDead = true;
             }
-
-
         }
 
         // Check for jump

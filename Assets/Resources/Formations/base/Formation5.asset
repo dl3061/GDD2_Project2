@@ -29,8 +29,8 @@ MonoBehaviour:
     formationPositionDetails: {x: 2, y: 2.5, z: 2}
     syncPolarity: -1
     copyIndex: 0
-  - polarities: 00000000
+  - polarities: 
     formationScaleDetails: {x: 2, y: 4, z: 1}
     formationPositionDetails: {x: -2, y: 2.5, z: 2}
-    syncPolarity: 0
+    syncPolarity: 1
     copyIndex: 0
