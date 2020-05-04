@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.50980395, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.50980395, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1330,6 +1330,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
         type: 3}
+      propertyPath: backgrounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
+        type: 3}
       propertyPath: ActivePlayer
       value: 
       objectReference: {fileID: 5541579336659216554}
@@ -1358,6 +1363,23 @@ PrefabInstance:
       propertyPath: TimerText
       value: 
       objectReference: {fileID: 875724340}
+    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
+        type: 3}
+      propertyPath: backgrounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 32900000, guid: 8d12e3f3ea4ecfc4da06eda48a62313f,
+        type: 3}
+    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
+        type: 3}
+      propertyPath: backgrounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 32900000, guid: 66245f2eb2eab5840a0c9d02af573128,
+        type: 3}
+    - target: {fileID: 1485836623958264608, guid: 287814835dfd31a418d48a4b048be95d,
+        type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 475958495}
     - target: {fileID: 2747744735294330836, guid: 287814835dfd31a418d48a4b048be95d,
         type: 3}
       propertyPath: m_LocalPosition.x

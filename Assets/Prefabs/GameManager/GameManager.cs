@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,14 @@ public class GameManager : MonoBehaviour
     {
         get; private set;
     }
+
+    [Tooltip("Background video clips")]
+    [SerializeField]
+    VideoClip[] backgrounds = new VideoClip[2];
+    [SerializeField]
+    VideoPlayer background;
+    int currentVideo = 0;
+
 
     [Tooltip("The Player itself, so other scripts can reference it statically")]
     public GameObject ActivePlayer;
@@ -115,6 +124,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
+        background.clip = backgrounds[currentVideo];
         // Initialize scroll speed to current scroll speed.
         currScrollSpeed = defaultScrollSpeed;
 
@@ -330,6 +340,14 @@ public class GameManager : MonoBehaviour
 
     public void TogglePolarityEventHandler()
     {
+        if(currentVideo == 1)
+        {
+            currentVideo = 0;
+        } else
+        {
+            currentVideo = 1;
+        }
+        background.clip = backgrounds[currentVideo];
         scoreMultiplier = 1f;
         midtoggleDelayTimer = midtoggleDelayTime;
     }
