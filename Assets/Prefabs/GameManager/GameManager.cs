@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
             if (centerText != null)
             {
                 if (CheckDeath())
-                    centerText.text = "You Died!";
+                    centerText.text = "You Died!\nPress tab to restart or H to go back to the main menu";
                 else
                     centerText.text = "";
             }
@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
             if (centerText != null)
             {
                 if (CheckDeath())
-                    centerText.text = "You Died!";
+                    centerText.text = "You Died!\nPress tab to restart or H to go back to the main menu";
                 else
                     centerText.text = "Paused";
             }
@@ -223,6 +223,11 @@ public class GameManager : MonoBehaviour
             {
                 ResetEvent.Raise();
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.H) && CheckDeath())
+        {
+            SceneManager.LoadScene("Home");
         }
 
         if (InputManager.Singleton.GetTransitionDown())
