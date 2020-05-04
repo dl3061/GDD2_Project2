@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camHeightDistance: 20
-  camLengthDistance: 10
+  camLengthDistance: 15
   rotational_scale: 0
   camPitch: 45
 --- !u!1 &1435636385
