@@ -5,10 +5,16 @@ using UnityEngine;
 public class PlayerYFollow : MonoBehaviour
 {
     [Tooltip("The offset between the camera and the player.")]
-    float offset = 7f;
+    public float camHeightDistance = 7f;
+
+    [Tooltip("The offset between the camera and the player.")]
+    public float camLengthDistance = 7f;
 
     [Tooltip("The ratio to rotate it per player height.")]
-    public float rotational_scale = 1f; 
+    public float rotational_scale = 1f;
+
+    [Tooltip("Pitch value for cam")]
+    public float camPitch = 45.0f;
 
 
     Quaternion initRotation;
@@ -23,15 +29,16 @@ public class PlayerYFollow : MonoBehaviour
     {
         if (GameManager.Singleton.ActivePlayer != null)
         {
-            float player_y = GameManager.Singleton.ActivePlayer.transform.position.y;
+            Vector3 playerPos = GameManager.Singleton.ActivePlayer.transform.position;
 
             // Update the y position to focus the player
             Vector3 pos = transform.position;
-            pos.y = player_y + offset;
+            pos.y = playerPos.y + camHeightDistance;
+            pos.z = playerPos.z - camLengthDistance;
             transform.position = pos;
 
             // Rotate along the x-axis of the camera to follow the player
-            Quaternion rot = Quaternion.Euler(25, initRotation.eulerAngles.y, initRotation.eulerAngles.z);
+            Quaternion rot = Quaternion.Euler(camPitch, initRotation.eulerAngles.y, initRotation.eulerAngles.z);
             transform.rotation = rot;
         }
     }
