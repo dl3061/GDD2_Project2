@@ -15,23 +15,16 @@ public class homeScreen : MonoBehaviour
     [SerializeField]
     Button Play;
 
-    private void Update()
-    {
-        Exit.onClick.AddListener(endGame);
-        HTP.onClick.AddListener(help);
-        Play.onClick.AddListener(play);
-    }
-
-    void endGame()
+    public void endGame()
     {
         Application.Quit();   
     }
-    void help()
+    public void help()
     {
         SceneManager.LoadScene("Help");
     }
 
-    void play()
+    public void play()
     {
         SceneManager.LoadScene("TestScene");
     }

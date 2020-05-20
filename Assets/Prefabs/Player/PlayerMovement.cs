@@ -239,7 +239,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (input.GetJumpDown())
                     {
-                        
                         // Set player state flags
                         isWaiting = false;
 

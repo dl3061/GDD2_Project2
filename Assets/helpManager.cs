@@ -10,12 +10,8 @@ public class helpManager : MonoBehaviour
     Button Home;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        Home.onClick.AddListener(home);   
-    }
 
-    void home()
+    public void home()
     {
         SceneManager.LoadScene("Home");
     }
